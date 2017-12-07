@@ -1,0 +1,34 @@
+<div class="page-left height-100-100 back-black-1 ">
+    <div class="pt-20 pb-50 overflow-scroll-y height-100-100">
+        <p class="text-center"><img  class="menu-head" width="60"></p>
+        <h5 class="text-center color-white"><%=sessionJson.userInfo.username%></h5>
+        <div class="mt-25 mb-20">
+            <div href="/" class="menu-title <%=!__menuCode?'active':''%> border-rad-10 cursor-pointer">
+                <span class="inline-block">首页</span>
+            </div>
+        </div>
+        <%
+        if(sessionJson.permissionData.parentMenuList)sessionJson.permissionData.parentMenuList.forEach(function(o){
+        var childMenuList = sessionJson.permissionData.menuList.filter(function(a){return a.parentCode == o.code});
+        var childClass = (__menuCode === o.code?'active':'')||childMenuList.map(function(a){return __menuCode === a.code?'active':''}).join('');
+        %>
+        <div class="sub-menu text-left mb-20">
+            <div href="<%=usePermission.menuList[o.code]%>" code="<%=o.code%>" class="menu-title border-rad-10 <%=childClass%>  cursor-pointer">
+                <span class="inline-block"><%=o.name%></span>
+            </div>
+            <div class="sub">
+                <%
+                childMenuList.forEach(function(b){
+                %>
+                <div href="<%=usePermission.menuList[b.code]%>" code="<%=b.code%>"  class="sub-text cursor-pointer <%=__menuCode==b.code?'active':''%>"><%=b.name%></div>
+                <%
+                });
+                %>
+            </div>
+        </div>
+        <%
+        })
+        %>
+
+    </div>
+</div>

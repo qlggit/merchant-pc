@@ -1,0 +1,81 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <base href="/">
+    <title>商户运营安全保护</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!-- 尺寸的设置以及页面是否允许缩放 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <link rel="stylesheet" href="/css/qrcode.css">
+    <script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+        window.loginId = '<%=loginId%>';
+        window.uid = '<%=uid%>';
+        window.NODE_ENV = '<%=NODE_ENV%>';
+        WY = {};
+        WY.clientWidth = document.documentElement ? document.documentElement.clientWidth : document.body.clientWidth;
+        WY.clientHeight = document.documentElement ? document.documentElement.clientHeight : document.body.clientHeight;
+        var fontSize = 100 * WY.clientWidth / 750;
+        //pc处理
+        if(WY.clientWidth > 750){
+            fontSize = 50;
+        }
+        document.documentElement.style.fontSize = fontSize + 'px';
+        WY.fontSizeScale = fontSize / 100;
+        WY.getScaleSize = function(size){
+            return size * WY.fontSizeScale;
+        }
+    </script>
+
+</head>
+<body class="back-242  fz-34  text-center">
+<div class="pt-170" id="showLoginContent">
+    <img src="/images/qrcode/head-ico.png" class="head-ico margin-auto" alt="">
+    <div class="color-10 pt-56 text-center">您确定要登录商户管理系统？</div>
+    <div class="pt-86 ">
+        <div class="btn color-white back-24 border-24 margin-auto " id="submitBtn">确认登录</div>
+    </div>
+    <div class="pt-60 ">
+        <div id="cancelBtn" class="btn color-24 back-transparent border-24 margin-auto">取消</div>
+    </div>
+</div>
+<div id="loginCompleteContent" class="pt-202" style="display:none;">
+    <img src="" class="complete-ico" id="loginCompleteIco" alt="">
+    <div class="pt-60 color-10" id="loginCompleteMsg"></div>
+</div>
+<script src="/js/lib/jquery.min.js"></script>
+<script src="/js/build/ws-login.js"></script>
+<script src="/js/build/wx.js"></script>
+<script>
+    var wsObj = new wsLogin({
+        env:NODE_ENV,
+        onopen:function(ws){
+            ws.send(JSON.stringify({
+                type:'qrcodeLogin',
+                itemType:'uid',
+                uid:uid,
+                data:loginId
+            }))
+        },
+        onmessage:function(data , ws){
+            showLoginContent.style.display = 'none';
+            loginCompleteContent.style.display = 'block';
+            loginCompleteIco.src = data.code === 0?'/images/qrcode/success.png':'/images/qrcode/fail.png';
+            loginCompleteMsg.innerHTML = data.code === 0?'登录成功！':(data.message||'登录失败！');
+        }
+    });
+    submitBtn.onclick = (function(){
+        wsObj.send(JSON.stringify({
+            type:'qrcodeLogin',
+            itemType:'login',
+            data:loginId
+        }));
+    });
+    cancelBtn.onclick = function(){
+        wx.closeWindow();
+    }
+</script>
+</body>
+</html>

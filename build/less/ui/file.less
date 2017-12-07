@@ -1,0 +1,45 @@
+.upload-content{
+  position: relative;
+  height: 190px;
+  background: #eee;
+  .img-content{
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: none;
+    &.show{
+      display: block;
+    }
+    img{
+      width: 100%;
+      height: 100%;
+    }
+    .del-ico{
+      position: absolute;
+      top:5px;
+      right: 5px;
+      width: 15px;
+      height: 15px;
+      font-size: 14px;
+      color: red;
+      cursor: pointer;
+    }
+  }
+  [type=file]{
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+  }
+  .add-ico{
+    font-size: 140px;
+    height: 100%;
+    line-height: 100%;
+  }
+}
+.list-file{
+  width: 25px;
+  height: 25px;
+}

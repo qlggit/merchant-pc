@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <title>Fullscreen Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="stylesheet" href="/css/login.css">
+        <script>
+            window.NODE_ENV = '<%=NODE_ENV%>';
+        </script>
+    </head>
+    <body>
+        <div class="page-container">
+            <h1>商户系统</h1>
+            <form class="login-form" style="display:none;">
+                <input type="text" name="username" class="username" placeholder="Username">
+                <input type="password" name="password" class="password" placeholder="Password">
+                <div class="error-message">异常信息</div>
+                <button type="submit">登录</button>
+                <div class="error"><span>+</span></div>
+                <div class="mt-25 toggle-show-btn">切换到二维码登录</div>
+            </form>
+            <form class="login-form" style="width: 400px;background: transparent">
+                <div class="show-qrcode-content"></div>
+                <div class="mt-25 toggle-show-btn">切换到账号登录</div>
+            </form>
+        </div>
+        <script src="/js/lib/jquery.min.js"></script>
+        <script src="/js/build/ws-login.js"></script>
+        <script src="/js/build/qrcode-login.js"></script>
+        <script src="/js/build/login.js"></script>
+    </body>
+</html>
+

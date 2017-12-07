@@ -1,0 +1,219 @@
+::selection {
+    background: #68dff0;
+    color: #fff;
+}
+.page-container{
+    width: 100%;
+    height: 100%;
+}
+ul.top-menu > li > .logout {
+    color: #f2f2f2;
+    font-size: 12px;
+    border-radius: 4px;
+    border: 1px solid #64c3c2 !important;
+    padding: 5px 15px;
+    margin-right: 15px;
+    background: #68dff0;
+    margin-top: 15px;
+}
+.page-sidebar{
+    width: 210px;
+    height: 100%;
+    position: fixed;
+    background: #424a5d;
+}
+.page-sidebar h5 {
+    color: #f2f2f2;
+    font-weight: 700;
+}
+.page-sidebar ul li {
+    position: relative;
+}
+.page-sidebar .sub-menu > .sub li  {
+    padding-left: 32px;
+}
+.page-sidebar .sub-menu > .sub li:last-child {
+    padding-bottom: 10px;
+}
+.nav-collapse.collapse {
+    display: inline;
+}
+ul.sidebar-menu , ul.sidebar-menu li ul.sub{
+    margin: -2px 0 0;
+    padding: 0;
+}
+ul.sidebar-menu {
+    margin-top: 75px;
+}
+.page-sidebar > ul > li > ul.sub {
+    display: none;
+}
+
+.page-sidebar > ul > li.active > ul.sub, .page-sidebar > ul > li > ul.sub > li > a {
+    display: block;
+}
+ul.sidebar-menu li ul.sub li{
+    background: #424a5d;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+ul.sidebar-menu li ul.sub li:last-child{
+    border-radius: 0 0 4px 4px;
+}
+ul.sidebar-menu li ul.sub li a {
+    font-size: 12px;
+    padding: 6px 0;
+    line-height: 35px;
+    height: 35px;
+    transition: all 0.3s ease;
+    color: #aeb2b7;
+}
+ul.sidebar-menu li ul.sub li a:hover {
+    color: white;
+    background: transparent;
+}
+ul.sidebar-menu li ul.sub li.active a {
+    color: #68dff0;
+    transition: all 0.3s ease;
+    display: block;
+}
+ul.sidebar-menu li{
+    margin-bottom: 5px;
+    margin-left:10px;
+    margin-right:10px;
+}
+ul.sidebar-menu li.sub-menu{
+    line-height: 15px;
+}
+ul.sidebar-menu li a span{
+    display: inline-block;
+}
+ul.sidebar-menu li a{
+    color: #aeb2b7;
+    text-decoration: none;
+    display: block;
+    padding: 15px 0 15px 10px;
+    font-size: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
+    background: #68dff0;
+    color: #fff;
+    display: block;
+    transition: all 0.3s ease;
+}
+ul.sidebar-menu li a i {
+    font-size: 15px;
+    padding-right: 6px;
+}
+ul.sidebar-menu li a:hover i, ul.sidebar-menu li a:focus i {
+    color: #fff;
+}
+ul.sidebar-menu li a.active i {
+    color: #fff;
+}
+.mail-info, .mail-info:hover {
+    margin: -3px 6px 0 0;
+    font-size: 11px;
+}
+.main-content {
+    margin-left: 210px;
+}
+.header{
+    min-height: 60px;
+    padding: 0 15px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1002;
+}
+.black-bg {
+    background: #ffd777;
+    border-bottom: 1px solid #c9aa5f;
+}
+.wrapper {
+    display: inline-block;
+    margin-top: 60px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-top: 0px;
+    width: 100%;
+}
+a.logo {
+    font-size: 20px;
+    color: #ffffff;
+    float: left;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+a.logo b {
+    font-weight: 900;
+}
+a.logo:hover, a.logo:focus {
+    text-decoration: none;
+    outline: none;
+}
+a.logo span {
+    color: #68dff0;
+}
+.top_menu .nav > li, ul.top-menu > li {
+    float: left;
+}
+.notify-row {
+    float: left;
+    margin-top: 15px;
+    margin-left: 92px;
+}
+.notify-row .notification span.label {
+    display: inline-block;
+    height: 18px;
+    width: 20px;
+    padding: 5px;
+}
+ul.top-menu > li > a {
+    color: #666666;
+    font-size: 16px;
+    border-radius: 4px;
+    border:1px solid #666666 !important;
+    padding: 2px 6px;
+    margin-right: 15px;
+}
+ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
+    border:1px solid #b6b6b6 !important;
+    background-color: transparent !important;
+    text-decoration: none;
+    border-radius: 4px;
+    color: #b6b6b6 !important;
+}
+
+.notify-row .badge {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    z-index: 100;
+}
+
+.sidebar-toggle-box {
+    float: left;
+    padding-right: 15px;
+    margin-top: 20px;
+}
+.sidebar-toggle-box .fa-bars {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+}
+.sidebar-closed > .page-sidebar > ul {
+    display: none;
+}
+.sidebar-closed .main-content {
+    margin-left: 0px;
+}
+.sidebar-closed .page-sidebar {
+    margin-left: -180px;
+}
+
+

@@ -1,0 +1,68 @@
+.page-container{
+  padding-top: @header-height;
+  padding-left:@left-width;
+  &.hide-left{
+    padding-left:0;
+    .page-left{
+      display: none;
+    }
+  }
+
+}
+.page-head{
+  height: @header-height;
+  border-bottom: 1px solid #c9aa5f;
+  position: fixed;
+  left: 0;
+  top:0;
+}
+.active-back(){
+  background:@color-green;
+  color:white;
+  transition: all 0.3s;
+}
+.active-color(){
+  color:@color-green;
+  transition: all 0.3s;
+}
+.page-left{
+  position: fixed;
+  width: @left-width;
+  padding:@header-height .1rem  .1rem .1rem;
+  left: 0;
+  top: 0;
+  .menu-head{
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .menu-title{
+    color:@color-gray;
+    font-size:.32rem;
+    padding: .36rem;
+    height: .96rem;
+    &.active{
+      .active-back();
+    }
+    &:hover{
+      .active-back();
+    }
+  }
+  .sub{
+    display: none;
+    padding-left:.5rem;
+  }
+  .active + .sub{
+    display: block;
+  }
+  .sub-text{
+    height: .7rem;
+    padding-top:.18rem;
+    color: @color-gray;
+    &.active{
+      .active-color();
+    }
+    &:hover{
+      .active-color();
+    }
+  }
+}
