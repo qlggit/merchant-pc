@@ -4,8 +4,13 @@ $(function(){
     if(!$table[0])return false;
     var $window = $('.permission-menu-window');
     var $dataForm = $window.find('form');
+    var $searchForm = $('.search-form');
+    $searchForm.submit(function(){
+        doSearch();
+        return false;
+    });
     function doSearch(){
-        $.get('/permission/menu/data' , function(a){
+        $.get('/permission/menu/data',$searchForm.serialize() , function(a){
             menuData = a.data;
             parentMenuData  = menuData && menuData.filter(function(a){
                 return !a.parentCode
@@ -36,10 +41,11 @@ $(function(){
             $tr.append('<td>'+o.code+'</td>');
             $tr.append('<td>'+(o.type===1?'商户':'内部')+'</td>');
             $tr.append('<td>'+(o.parentCode || '')+'</td>');
+            $tr.append('<td>'+(o.status?'启用':"停用")+'</td>');
             $tr.append('<td>'+useCommon.parseDate(o.updateTime)+'</td>');
             $tr.append('<td><div class="btn-group">' +
                 '<a class="btn btn-sm btn-primary update-btn" index="'+i+'">修改</a>' +
-                // '<a class="btn btn-sm btn-primary delete-btn">删除</a>' +
+                '<a class="btn btn-sm btn-primary change-btn" index="'+i+'">'+(o.status?'停用':'启用')+'</a>' +
                 '</div></td>');
             $table.append($tr);
         });
@@ -62,6 +68,16 @@ $(function(){
     $table.on('click', '.update-btn' , function(){
         $window.modal();
         $dataForm.__formData(updateData = showData[$(this).attr('index')]);
+    });
+    $table.on('click', '.change-btn' , function(){
+        updateData = showData[$(this).attr('index')];
+        $.post('/permission/menu/change' , updateData,function(a){
+            if(a.code ==0){
+                doSearch();
+            }else{
+                useCommon.toast(a.message);
+            }
+        })
     });
     $table.on('click', '.delete-btn' , function(){
     });

@@ -126,6 +126,13 @@ module.exports = [
     },
     {
         src:[
+            './build/js/page/withdraw/stream.js',
+        ],
+        concatName:'withdraw-stream.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
             './build/js/page/member/group.js',
         ],
         concatName:'member-group.js',
@@ -147,6 +154,15 @@ module.exports = [
     },
     {
         src:[
+            './build/js/page/merchant/info.js',
+        ],
+        concatName:'merchant-info.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/ui/bootstrap-datetimepicker.min.js',
+            './build/js/ui/date.js',
             './build/js/page/merchant/activity.js',
         ],
         concatName:'merchant-activity.js',
@@ -192,6 +208,20 @@ module.exports = [
             './build/js/page/spread/index.js',
         ],
         concatName:'spread.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/page/admin/merchant/list.js',
+        ],
+        concatName:'admin-merchant-list.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/page/admin/version.js',
+        ],
+        concatName:'admin-version.js',
         destPath:'./build/js/build/'
     },
 ];

@@ -1,5 +1,6 @@
 <% title = '首页'%>
 <% include ../../layouts/header.html%>
+<link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css">
 <div class="">
     <div class=" ">
         <form class="form-inline search-form pl-15 range-time-select">
@@ -10,18 +11,20 @@
                 <input type="text" class="form-control end-time" placeholder="结束时间">
             </div>
             <div class="form-group">
-                <select class="form-control" data-dictionary="productStatus" name="productType"></select>
+                <select class="form-control" data-dictionary="withdrawStatus" name="status"></select>
             </div>
-            <button type="submit" class="btn btn-default">search</button>
-            <button type="button" class="btn btn-primary add-new-btn">add</button>
+            <button type="submit" class="btn btn-default">查询</button>
+            <button type="button" class="btn btn-primary" href="/withdraw">添加</button>
         </form>
         <div class="mt-15">
             <table class="table width-100 show-data-table">
                 <tr>
                     <td>序号</td>
-                    <td>发起时间</td>
                     <td>金额</td>
-                    <td>完成时间</td>
+                    <td>发起人</td>
+                    <td>申请商户</td>
+                    <td>申请时间</td>
+                    <td>银行类型</td>
                     <td>状态</td>
                     <td>操作</td>
                 </tr>

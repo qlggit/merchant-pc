@@ -9,7 +9,8 @@ router.get('/data',useValidate.hasLogin, function(req, res, next) {
     useRequest.send(req , res , {
         url:useUrl.permissionMerchant.user,
         data:{
-            company:req.session.userInfo.company
+            company:req.session.userInfo.company,
+            name:req.query.name,
         },
         done:function(a){
             res.send(a);

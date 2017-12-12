@@ -18,13 +18,13 @@ $(function(){
         WY.ready('auto-load-dictionary');
     });
     if($.fn.rangeTimeSelect)$('.range-time-select').rangeTimeSelect({});
+    if($.fn.oneDatetimePicker)$('.date-time-picker').oneDatetimePicker({});
     $('.show-file-content').showFileUpload();
 });
 
 $.uploadFile = function(file ,options,data, call){
     var formData = new FormData();
-    formData.append(options.fileName || 'fileName' , file);
-    formData.append('path' , 'pc/'+options.type+'/' + useCommon.parseDate(new Date , 'Ymd'));
+    formData.append(options.fileName || 'filename' , file);
     for(var i in data){
         formData.append(i , data[i]);
     }
@@ -34,6 +34,7 @@ $.uploadFile = function(file ,options,data, call){
         data : formData,
         dataType:"json",
         cache:false,
+        timeout:options.timeout || 60000,
         processData : false,
         contentType : false,
         errorText:'上传失败',
@@ -52,7 +53,7 @@ $.fn.showFileUpload = function(options){
     return this.each(function(){
         var $this = $(this);
         var showName = (options.showName|| $this.attr('show-name') || 'showName');
-        var fileName = (options.fileName|| $this.attr('file-name') || 'fileName');
+        var fileName = (options.fileName|| $this.attr('file-name') || 'filename');
         $this.html('').append($('<div class="img-content">'+
             '<div class="del-ico">×</div>'+
             '<img src="" alt="" class="img-thumbnail">'+
@@ -89,6 +90,51 @@ $.fn.showFileUpload = function(options){
             $this.find('.show-file-name').val('');
             $this.find('img').attr('src' , '');
             $this.find('.img-content').removeClass('show');
+        }
+        var showImg = $(this).attr('showImg');
+        if(showImg){
+            showUrl(showImg);
+        }
+    });
+};
+$.fn.doFileUpload = function(options){
+    options = options || {};
+    return this.each(function(){
+        var $this = $(this);
+        var showName = (options.showName|| $this.attr('show-name') || 'showName');
+        var fileName = (options.fileName|| $this.attr('file-name') || 'filename');
+        var accept = (options.accept|| $this.attr('accept') || 'audio/mp3');
+        $this.html('')
+            .append($('<input type="file" accept="'+accept+'" class="" name="'+fileName+'">'))
+            .append($('<input type="text" class="show-file-name form-control" name="'+showName+'">'))
+            .append($('<div class="del-ico text-center cursor-pointer" style="display:none;">×</div>'));
+        $this.find(':file').change(function(){
+            if($(this).val()){
+                $.uploadFile(this.files[0] , {
+                    fileName:fileName,
+                    type:options.type || 'product',
+                    url:options.url
+                } ,options.data || {}, function(a){
+                    if(a.code === 10000 || a.code === "10000"){
+                        showUrl(useCommon.concatImgUrl(a.data.filePath));
+                    }else{
+                        useCommon.toast(a.message);
+                    }
+                });
+            }{
+                clear();
+            }
+        });
+        function showUrl(src){
+            $this.find('.show-file-name').val(src);
+            $this.find('.del-ico').show();
+        }
+        $this.find('.del-ico').click(function(){
+            clear();
+        });
+        function clear(){
+            $this.find('.show-file-name').val('');
+            $this.find('.del-ico').hide();
         }
         var showImg = $(this).attr('showImg');
         if(showImg){

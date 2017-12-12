@@ -1,12 +1,20 @@
 var express = require('express');
 var router = express.Router();
-router.get('/',useValidate.hasLogin, usePermission.authMenu('menu0802'),function(req, res, next) {
+router.get('/',useValidate.hasLogin, usePermission.authMenu('menu0803'),function(req, res, next) {
     res.useRender('order/rate');
 });
-router.get('/list',useValidate.hasLogin, function(req , res , next) {
-    req.query.supplierId = req.session.userInfo.company;
+router.get('/data',useValidate.hasLogin, function(req , res , next) {
     useRequest.send(req , res , {
-        url:useUrl.order.seatList,
+        url:useUrl.order.rateList,
+        data:req.query,
+        done:function(data){
+            res.useSend(data);
+        }
+    });
+});
+router.post('/delete',useValidate.hasLogin, function(req , res , next) {
+    useRequest.send(req , res , {
+        url:useUrl.order.rateDelete,
         data:req.query,
         done:function(data){
             res.useSend(data);

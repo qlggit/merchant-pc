@@ -29,6 +29,16 @@ router.post('/update',useValidate.hasLogin, function(req, res, next) {
         }
     })
 });
+router.post('/change',useValidate.hasLogin, function(req, res, next) {
+    useRequest.send(req , res , {
+        url:useUrl.permissionAdmin.permissionChange,
+        data:req.body,
+        method:'POST',
+        done:function(a){
+            res.useSend(a);
+        }
+    })
+});
 router.post('/delete',useValidate.hasLogin, function(req, res, next) {
     useRequest.send(req , res , {
         url:useUrl.permissionAdmin.permissionDelete,
@@ -62,6 +72,16 @@ router.post('/menu/add',useValidate.hasLogin, function(req, res, next) {
 router.post('/menu/update',useValidate.hasLogin, function(req, res, next) {
     useRequest.send(req , res , {
         url:useUrl.permissionAdmin.permissionMenuUpdate,
+        data:req.body,
+        method:'POST',
+        done:function(a){
+            res.useSend(a);
+        }
+    })
+});
+router.post('/menu/change',useValidate.hasLogin, function(req, res, next) {
+    useRequest.send(req , res , {
+        url:useUrl.permissionAdmin.permissionMenuChange,
         data:req.body,
         method:'POST',
         done:function(a){

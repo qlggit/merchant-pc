@@ -55,9 +55,9 @@ Permission.init = function(){
 
         menu07:'/product',
 
-        menu0801:'/order',
-        menu0802:'/order/rate',
-        menu0803:'/order/seat',
+        menu0801:'/order/seat',
+        menu0802:'/order',
+        menu0803:'/order/rate',
 
         menu09:useConfig.get('seatUrl')+'/server/merchant/seat/index',
 
@@ -68,6 +68,12 @@ Permission.init = function(){
         menu1101:'/withdraw',
         menu1102:'/withdraw/list',
         menu1103:'/withdraw/bank',
+        menu1104:'/withdraw/stream',
+
+
+        //内部使用菜单
+        menu001:'/admin/merchant',
+        menu004:'/admin/version',
 
 
     };

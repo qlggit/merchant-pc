@@ -1,4 +1,19 @@
 (function(){
+    var alertWindow,alertCb;
+    WY.alert = function(options){
+        if(typeof options !== 'object')options = {content:options};
+        confirmCb = options.done;
+        if(!alertWindow){
+            alertWindow = $('.bs-alert-window');
+            alertWindow.on('click' , '.this-submit-btn',function(){
+                if(alertCb && alertCb() === false)return false;
+                alertWindow.modal('hide');
+            });
+        }
+        alertWindow.find('.modal-title').text(options.title || '提示');
+        alertWindow.find('.text-content').text(options.content || '提示');
+        alertWindow.modal();
+    };
     var confirmWindow,confirmCb;
     WY.confirm = function(options){
         confirmCb = options.done;

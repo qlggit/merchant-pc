@@ -12,11 +12,10 @@ $(function(){
     })
     function doSearch(page){
         var sendData = {
-            status:$searchForm.find('[namae=status]').val(),
             pageNum:page || 1,
             pageSize:10,
         };
-        $.get('/withdraw/list/data', sendData , function(a){
+        $.get('/withdraw/stream/list', sendData , function(a){
             allData = a.data;
             setPage(page);
         });
@@ -29,15 +28,12 @@ $(function(){
         $.each(showData , function(i , o){
             var $tr = $('<tr>').addClass('data-list');
             $tr.append('<td>'+(i+1)+'</td>');
-            $tr.append('<td>'+o.je / 100  +'</td>');
-            $tr.append('<td>'+o.operatorName    +'</td>');
-            $tr.append('<td>'+o.supplierName     +'</td>');
-            $tr.append('<td>'+useCommon.parseDate(o.rowAddTime )     +'</td>');
-            $tr.append('<td>'+o.yhkLxMc    +'</td>');
-            $tr.append('<td>'+Dictionary.text('withdrawStatus',o.status)   +'</td>');
-            $tr.append('<td><div class="btn-group">' +
-                (WY.permissionAuthHtml('' , '<a class="btn btn-sm btn-primary" index="'+i+'">详情</a>')) +
-                '</div></td>');
+            $tr.append('<td>'+o.bh  +'</td>');
+            $tr.append('<td>'+o.je   +'</td>');
+            $tr.append('<td>'+o.lylx    +'</td>');
+            $tr.append('<td>'+o.jysj   +'</td>');
+            $tr.append('<td>'+o.khxx   +'</td>');
+            $tr.append('<td>'+o.lymc   +'</td>');
         });
         if(!$page){
             $table.after($page = $('<div>').addClass('table-page mt-30'));

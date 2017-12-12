@@ -47,6 +47,7 @@ module.exports = function(req , res , next){
         data.__CSRF = req.session.__CSRF || '';
         data.query = req.query;
         data.env = process.env.NODE_ENV || '';
+        data.seatUrl = useConfig.get('seatUrl');
         data.merchant_channel = req.session.channel || '';
         res.setHeader('X-Frame-Options','SAMEORIGIN');
         res.render('page/' + path , data);

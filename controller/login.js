@@ -18,27 +18,44 @@ router.post('/qrcode', function(req, res, next) {
         }
     })
 });
-router.get('/update',useValidate.hasLogin,  function(req, res, next) {
+router.get('/update', function(req, res, next) {
     res.render('login-update',{
         NODE_ENV:process.env.NODE_ENV
     });
 });
 router.post('/', function(req, res, next) {
-    var loginUrl = req.body.username === 'admin'?useUrl.login.login:useUrl.merchant.login;
+    var isAdmin = req.body.username === 'admin';
+    var loginUrl = isAdmin?useUrl.login.login:useUrl.merchant.login;
     useRequest.send(req , res , {
         url:loginUrl,
         data:req.body,
         method:'POST',
         done:function(a){
             if(a.code !== 0) return res.useSend(a);
-            useData.setPermission(req , res , a.data , function(a){
-                res.send(a);
-            });
+            var loginData = a.data;
+            useRequest.send(req , res , {
+                url:useUrl.login.apiLogin,
+                data:{
+                    deviceType:'PC',
+                    gender : '3',
+                    stype :'qq' ,
+                    sType :'qq' ,
+                    uid:isAdmin?'admin':a.username + '-' + a.data.company
+                },
+                method:'POST',
+                done:function(a){
+                    if(a.code !== 0)return res.useSend(a);
+                    req.session.merchantUserInfo = a.data;
+                    useData.setPermission(req , res , loginData , function(a){
+                        res.send(a);
+                    });
+                }
+            })
         }
     })
 });
-router.post('/update',useValidate.hasLogin, function(req, res, next) {
-    var loginUrl = req.body.username === 'admin'?useUrl.login.update:useUrl.merchant.update;
+router.post('/update', function(req, res, next) {
+    var loginUrl = req.body.username === 'admin'?useUrl.login.update:useUrl.merchant.reset;
     useRequest.send(req , res , {
         url:loginUrl,
         data:req.body,

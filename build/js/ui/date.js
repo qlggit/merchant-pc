@@ -27,3 +27,19 @@ $.fn.rangeTimeSelect = function(options){
         });
     });
 };
+$.fn.oneDatetimePicker = function(options){
+    return this.each(function(){
+        var dateOptions = {
+            format:$(this).attr('format') || 'yyyy-mm-dd hh:ii:ss',
+            autoclose:true,
+            minView:$(this).attr('min-view'),
+            todayBtn:'linked',
+            todayHighlight:true,
+        };
+        var startDate = $(this).attr('start-date');
+        if(startDate)dateOptions.startDate = startDate;
+        var endDate = $(this).attr('end-date');
+        if(endDate)dateOptions.endDate = endDate;
+        $(this).datetimepicker(dateOptions);
+    });
+};

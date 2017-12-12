@@ -13,6 +13,7 @@ $(function(){
             if(code === 'menu09'){
                 href = useCommon.addUrlParam(href , {
                     token:1,
+                    userId:sessionJson.userId || 1,
                     username:sessionJson.username,
                     merchantId:sessionJson.userInfo.company
                 });
