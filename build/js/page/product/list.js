@@ -36,16 +36,12 @@ $(function(){
             $tr.append('<td>'+o.unitPrice/100+'</td>');
             $tr.append('<td>'+o.totalStockNum+'</td>');
             $tr.append('<td>'+o.stockNum+'</td>');
-            $tr.append('<td>'+({
-                normal:'初始化',
-                up:'上架',
-                down:'下架',
-            })[o.status]+'</td>');
+            $tr.append('<td>'+Dictionary.text('productStatus',o.status)+'</td>');
             $tr.append('<td><div class="btn-group">' +
-                (WY.permissionAuthHtml('menu0702' , '<a class="btn btn-sm btn-primary update-btn" index="'+i+'">修改</a>')) +
-                (WY.permissionAuth('menu0703')&&o.status !== 'up'?'<a class="btn btn-sm btn-primary change-btn" status="up" index="'+i+'">上架</a>':'') +
-                (WY.permissionAuth('menu0703')&&o.status === 'up'?'<a class="btn btn-sm btn-primary change-btn" status="down" index="'+i+'">下架</a>':'') +
-                (WY.permissionAuth('menu0704')?'<a class="btn btn-sm btn-primary num-btn" status="down" index="'+i+'">库存</a>':'') +
+                (WY.permissionAuthHtml('' , '<a class="btn btn-sm btn-primary update-btn" index="'+i+'">修改</a>')) +
+                (WY.permissionAuth('')&&o.status !== 'up'?'<a class="btn btn-sm btn-primary change-btn" status="up" index="'+i+'">上架</a>':'') +
+                (WY.permissionAuth('')&&o.status === 'up'?'<a class="btn btn-sm btn-primary change-btn" status="down" index="'+i+'">下架</a>':'') +
+                (WY.permissionAuth('')?'<a class="btn btn-sm btn-primary num-btn" status="down" index="'+i+'">库存</a>':'') +
                 // '<a class="btn btn-sm btn-primary delete-btn">删除</a>' +
                 '</div></td>');
             $table.append($tr);

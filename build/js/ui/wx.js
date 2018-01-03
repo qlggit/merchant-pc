@@ -1,5 +1,5 @@
 $(function(){
-    $.post('/wechat/jssdk',{
+    $.get('/wechat/jssdk',{
         url:location.href
     } , function(a){
         if(a.code === 0){

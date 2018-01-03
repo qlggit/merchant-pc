@@ -39,22 +39,12 @@ jQuery(document).ready(function() {
         return false;
     });
     $('.page-container .update-form').submit(function(){
-        var username = $(this).find('[name=username]').val();
         var password = $(this).find('[name=password]').val();
         var newPassword = $(this).find('[name=newPassword]').val();
         hideMessage();
-        if(username === '') {
-            $(this).find('.error').fadeOut('fast', function(){
-                $(this).css('top', '27px');
-            });
-            $(this).find('.error').fadeIn('fast', function(){
-                $(this).parent().find('.username').focus();
-            });
-            return false;
-        }
         if(password === '') {
             $(this).find('.error').fadeOut('fast', function(){
-                $(this).css('top', '96px');
+                $(this).css('top', '27px');
             });
             $(this).find('.error').fadeIn('fast', function(){
                 $(this).parent().find('.password').focus();
@@ -63,7 +53,7 @@ jQuery(document).ready(function() {
         }
         if(newPassword === '') {
             $(this).find('.error').fadeOut('fast', function(){
-                $(this).css('top', '165px');
+                $(this).css('top', '96px');
             });
             $(this).find('.error').fadeIn('fast', function(){
                 $(this).parent().find('.password').focus();
@@ -74,7 +64,6 @@ jQuery(document).ready(function() {
             url:'/login/update',
             method:'POST',
             data:{
-                username:username,
                 password:md5(password),
                 newPassword:md5(newPassword),
             },

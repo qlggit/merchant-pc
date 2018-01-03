@@ -1,4 +1,74 @@
 <% title = '团队管理'%>
 <% include ../../layouts/header.html%>
+<div class="">
+    <div class=" ">
+        <form class="form-inline search-form pl-15">
+            <button type="button" class="btn btn-primary add-new-btn">添加</button>
+        </form>
+        <div class="mt-15">
+            <table class="table width-100 show-data-table">
+                <tr>
+                    <td>序号</td>
+                    <td>昵称</td>
+                    <td>头像</td>
+                    <td>角色</td>
+                    <td>介绍</td>
+                    <td>排序</td>
+                    <td>操作</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal fade show-info-window" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">团队</h4>
+            </div>
+            <div class="modal-body ">
+                <form class="form-horizontal">
+                    <input type="hidden" name="status">
+                    <div class="form-group" >
+                        <label class="control-label col-sm-4">昵称</label>
+                        <div class="col-sm-6">
+                            <input class="form-control"  name="nickname" maxlength="20" placeholder="请输入昵称">
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <label class="control-label col-sm-4">角色</label>
+                        <div class="col-sm-6">
+                            <input class="form-control"  name="role" maxlength="20" placeholder="请输入角色名称">
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <label class="control-label col-sm-4">介绍</label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control"  name="introduction" maxlength="200" placeholder="请输入介绍"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group" >
+                        <label class="control-label col-sm-4">排序</label>
+                        <div class="col-sm-6">
+                            <input class="form-control"  name="orderNum" maxlength="2" placeholder="请输入排序">
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <label class="control-label col-sm-4">显示图片</label>
+                        <div class="col-sm-6">
+                            <div class="show-file-content upload-content" show-name="headImg"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary this-submit-btn">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <script src="/js/build/merchant-team.js"></script>
 <% include ../../layouts/footer.html%>

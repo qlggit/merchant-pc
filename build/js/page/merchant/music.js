@@ -32,7 +32,7 @@ $(function(){
             $tr.append('<td>'+(i+1)+'</td>');
             $tr.append('<td>'+o.authorName +'</td>');
             $tr.append('<td>'+o.musicName  +'</td>');
-            $tr.append('<td><img src="'+o.musicPic +'" class="ico-40" alt=""></td>');
+            $tr.append('<td><img src="'+o.musicPic +'" class="ico-40 show-big-img" alt=""></td>');
             $tr.append('<td></td>');
             $tr.append('<td>'+({
                 normal:'初始化',
@@ -59,7 +59,8 @@ $(function(){
     }
     $('.add-new-btn').click(function(){
         $window.modal();
-        $window.find('.show-file-content').attr('showImg','').showFileUpload();
+        $window.find('.show-file-content').html('');
+        $window.find('.do-audio-content').html('');
         $window.find('.do-audio-content').attr('showImg','').doFileUpload();
         $dataForm[0].reset();
         updateData = null;

@@ -2,7 +2,7 @@
     var alertWindow,alertCb;
     WY.alert = function(options){
         if(typeof options !== 'object')options = {content:options};
-        confirmCb = options.done;
+        alertCb = options.done;
         if(!alertWindow){
             alertWindow = $('.bs-alert-window');
             alertWindow.on('click' , '.this-submit-btn',function(){
@@ -14,18 +14,25 @@
         alertWindow.find('.text-content').text(options.content || '提示');
         alertWindow.modal();
     };
-    var confirmWindow,confirmCb;
+    var confirmWindow,confirmCb,confirmCancelCb;
     WY.confirm = function(options){
         confirmCb = options.done;
+        confirmCancelCb = options.cancel;
         if(!confirmWindow){
             confirmWindow = $('.bs-confirm-window');
             confirmWindow.on('click' , '.this-submit-btn',function(){
                 if(confirmCb && confirmCb() === false)return false;
                 confirmWindow.modal('hide');
             });
+            confirmWindow.on('click' , '.this-close-btn',function(){
+                if(confirmCancelCb && confirmCancelCb() === false)return false;
+                confirmWindow.modal('hide');
+            });
         }
         confirmWindow.find('.modal-title').text(options.title || '提示');
         confirmWindow.find('.text-content').text(options.content || '提示');
+        confirmWindow.find('.this-submit-btn').text(options.submitText || '确定');
+        confirmWindow.find('.this-close-btn').text(options.cancelText || '关闭');
         confirmWindow.modal();
     };
     var promptWindow,promptCb;
@@ -70,7 +77,25 @@
     });
     var $loadingWindow;
     WY.loading = function(sts){
-        $loadingWindow = $loadingWindow || $('.wy-loading-window');
-        $loadingWindow[sts?'show':'hide']();
+        $loadingWindow = $loadingWindow || $('.ms-loading-window');
+        $loadingWindow[sts == 0?'hide':'show']();
+    };
+    var $videoWindow;
+    WY.showVideo = function(src , title){
+        if(!$videoWindow){
+            $videoWindow = $('.modal-video-window');
+            $videoWindow.find('.aria-label').click(function(){
+
+            });
+        }
+        $videoWindow.find('video').attr('src' , src);
+        $videoWindow.find('.modal-title').text(title || '视频播放');
+        $videoWindow.modal();
+    };
+    WY.showImage = function(src , title){
+        $videoWindow = $videoWindow || $('.modal-image-window');
+        $videoWindow.find('.img').css('background-image' , 'url('+src+')');
+        $videoWindow.find('.modal-title').text(title || '图片展示');
+        $videoWindow.modal();
     }
 })();

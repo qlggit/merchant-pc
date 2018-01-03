@@ -53,10 +53,8 @@ qrcodeLogin.prototype = {
         this.options.content.appendChild(div);
     },
     getUrl:function(data){
-        return 'http://' + ({
-            dev:'192.168.1.119:3003',
-            test:'192.168.1.245:3003',
-            online:'47.100.20.78:3003',
-        })[this.options.env] +data;
+        var url = resJson.qrcodeApi +data;
+        console.log(url);
+        return url;
     }
 };

@@ -4,11 +4,7 @@
     <form class="form-horizontal width-60-100">
         <div class="form-group" >
             <label class="control-label col-sm-4">当前余额</label>
-            <div class="col-sm-6">2000</div>
-        </div>
-        <div class="form-group" >
-            <label class="control-label col-sm-4">可提现金额</label>
-            <div class="col-sm-6">1000</div>
+            <div class="col-sm-6"><%=(merchantInfo.balance / 100).toFixed(2)%></div>
         </div>
         <div class="form-group" >
             <label class="control-label col-sm-4">提现手续费</label>
@@ -17,7 +13,7 @@
         <div class="form-group" >
             <label class="control-label col-sm-4">需要提现金额</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control withdraw-number" placeholder="最低提现金额100" maxlength="10">
+                <input type="text" class="form-control withdraw-number" placeholder="最低提现金额500" maxlength="10">
             </div>
             <div class="show-withdraw-number"></div>
         </div>
@@ -26,9 +22,9 @@
             <div class="col-sm-6">
                 <select class="form-control"
                                           data-dictionary="/withdraw/bank/list?pageSize=20&pageNum=1"
-                                          name="yhkId"
-                        load-key="yhkLxId"
-                        load-val="hm"
+                                          name="bankId"
+                        load-key="supplierBankId"
+                        load-val="bankName"
                     ></select>
             </div>
         </div>

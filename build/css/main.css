@@ -111,6 +111,9 @@ div::-webkit-scrollbar {
 .back-transparent {
   background: transparent;
 }
+.back-24 {
+  background: #181818;
+}
 .margin-auto {
   margin: auto;
 }
@@ -131,6 +134,9 @@ div::-webkit-scrollbar {
 }
 .mr-10 {
   margin-right: .10rem;
+}
+.mr-5 {
+  margin-right: .05rem;
 }
 .mr-30 {
   margin-right: .30rem;
@@ -198,6 +204,9 @@ div::-webkit-scrollbar {
 .break-none {
   white-space: nowrap;
 }
+.text-indent {
+  text-indent: 30px;
+}
 .fz-30 {
   font-size: .3rem;
 }
@@ -249,6 +258,9 @@ div::-webkit-scrollbar {
 .width-auto {
   width: auto;
 }
+.width-1014 {
+  width: 1014px;
+}
 .height-100-100 {
   height: 100%;
 }
@@ -267,6 +279,9 @@ div::-webkit-scrollbar {
 .max-h-300 {
   max-height: 3rem;
 }
+.max-h-100 {
+  max-height: 1rem;
+}
 .pt-30 {
   padding-top: .3rem;
 }
@@ -278,6 +293,9 @@ div::-webkit-scrollbar {
 }
 .pt-40 {
   padding-top: .4rem;
+}
+.pt-120 {
+  padding-top: 1.2rem;
 }
 .pt-header {
   padding-top: 1.02rem;
@@ -293,6 +311,9 @@ div::-webkit-scrollbar {
 }
 .pl-40 {
   padding-left: .4rem;
+}
+.pl-240 {
+  padding-left: 2.4rem;
 }
 .pl-lefter {
   padding-left: 4.2rem;
@@ -685,6 +706,24 @@ div::-webkit-scrollbar {
 .list-file {
   width: 25px;
   height: 25px;
+}
+.status-list {
+  color: #999;
+}
+.status-list .number {
+  text-align: center;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  line-height: 28px;
+  border-radius: 100%;
+  border: 1px solid #999;
+}
+.status-list .number.active {
+  border: 1px solid #169bfd;
+}
+.status-list .active {
+  color: #169bfd;
 }
 .flex-basis-30 {
   flex-basis: 30px;

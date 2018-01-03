@@ -39,6 +39,8 @@ module.exports = function(req , res , next){
         data = data || {};
         data.resJson = data.resJson || {};
         data.resJson.apiImgUrl = useConfig.get('apiImgUrl');
+        data.resJson.qrcodeApi = useConfig.get('qrcodeApi');
+        data.resJson.hostname = useConfig.get('hostname');
         data.resJson.usePageSize = usePageSize;
         data.__menuCode = req.__menuCode || '';
         data.__permissionCode = req.__permissionCode || '';
@@ -48,7 +50,7 @@ module.exports = function(req , res , next){
         data.query = req.query;
         data.env = process.env.NODE_ENV || '';
         data.seatUrl = useConfig.get('seatUrl');
-        data.merchant_channel = req.session.channel || '';
+        data.merchant_channel = req.session.merchantUserInfo && req.session.merchantUserInfo.supplierId || '';
         res.setHeader('X-Frame-Options','SAMEORIGIN');
         res.render('page/' + path , data);
     };

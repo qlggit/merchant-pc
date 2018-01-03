@@ -4,6 +4,7 @@ router.get('/',useValidate.hasLogin, usePermission.authMenu('menu0803'),function
     res.useRender('order/rate');
 });
 router.get('/data',useValidate.hasLogin, function(req , res , next) {
+    req.query.supplierId = req.session.userInfo.company;
     useRequest.send(req , res , {
         url:useUrl.order.rateList,
         data:req.query,

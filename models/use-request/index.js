@@ -5,12 +5,14 @@ module.exports = {
         var sendData = useCommon.extend({} , options.data);
         var method = options.method || 'GET';
         var headers = options.headers || {};
+        if(sendData)sendData.remoteAddress = req.remoteAddress;
         useCommon.clearNull(sendData);
         var __ = {
             url:options.url,
             method:method.toUpperCase(),
             headers:headers
         };
+        headers.tokenInfo = options.tokenInfo || req.session.merchantUserInfo&&[req.session.merchantUserInfo.tokenModel.userId , req.session.merchantUserInfo.tokenModel.token].join('_') || '';
         if(method.toUpperCase() === 'POST' && !options.notBody){
                 __.body = JSON.stringify(sendData);
                 __.headers["content-type"] =  "application/json";
@@ -35,11 +37,16 @@ module.exports = {
                 body.data = body.result;
                 delete body.result;
             }
+            console.log(body);
             if(body){
                 body.baseCode = body.code;
+                if(body.code === '10002'){
+                    req.session.userInfo = null;
+                    req.session.merchantUserInfo = null;
+                    return res.status(401).end();
+                }
                 if(body.code === '10000')body.code = 0;
             }
-            console.log(body);
             options.done(body || {code:1,msg:'系统异常'});
         });
     },

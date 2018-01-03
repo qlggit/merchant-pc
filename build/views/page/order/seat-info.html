@@ -1,0 +1,173 @@
+<% title="订桌详情"%>
+<% include ../../layouts/header.html%>
+<div class="">
+    <div class=" ">
+        <form class="form-horizontal pl-15 merchant-info-form ">
+            <%
+            seatOrder = seatOrder[0]
+            %>
+            <h4>订桌详情</h4>
+            <div class="flex-between">
+                <div class="width-50-100">
+                    <div class="form-group pt-40">
+                        <label class="col-sm-2 control-label">订单号</label>
+                        <div class="col-sm-6">
+                            <input  class="form-control" name="supplierName" value="<%=seatOrder.orderNo%>" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="width-50-100 flex-left">
+                    <%if(seatOrder.tableStatus!=='y'){%>
+                    <span class="mr-10">不允许拼桌</span>
+                    <%}else if(ping && ping.length){%>
+                    <span class="mr-10">有拼桌</span>
+                    <%}else{%>
+                    <span class="mr-10">允许拼桌</span>
+                    <%}%>
+                    <button class="btn btn-primary">使用</button>
+                </div>
+            </div>
+            <div class="status-list flex-left pb-40">
+                <div class="item mr-30">
+                    <div class="flex-left">
+                        <div class="number">1</div>
+                        <div>订桌</div>
+                    </div>
+                    <div></div>
+                </div>
+                <div class="item mr-30">
+                    <div class="flex-left">
+                        <div class="number">2</div>
+                        <div>支付</div>
+                    </div>
+                    <div></div>
+                </div>
+                <div class="item mr-30">
+                    <div class="flex-left">
+                        <div class="number">3</div>
+                        <div>使用中</div>
+                    </div>
+                    <div></div>
+                </div>
+                <div class="item mr-30">
+                    <div class="flex-left">
+                        <div class="number">3</div>
+                        <div>已使用</div>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+            <fieldset class="">
+                <legend>客户信息</legend>
+                <table class="table width-100-100">
+                    <tr>
+                        <td>用户名</td>
+                        <td>联系方式</td>
+                        <td>入桌方式</td>
+                        <td>是否下单</td>
+                    </tr>
+                    <tr>
+                        <td><%=seatOrder.nickName%></td>
+                        <td><%=seatOrder.mobile%></td>
+                        <td>订桌</td>
+                        <td><%=order.find(function(a){return a.userId === seatOrder.userId})?'是':'否'%></td>
+                    </tr>
+                    <%ping&&ping.filter(function(a){return a.isAgree === 'Y';}).forEach(function(a){
+                    %>
+                    <tr>
+                        <td><%=a.nickName%></td>
+                        <td><%=a.mobile%></td>
+                        <td>拼桌</td>b
+                        <td><%=order.find(function(b){return a.userId === b.userId})?'是':'否'%></td>
+                    </tr>
+                    <%})%>
+                </table>
+            </fieldset>
+            <fieldset class="">
+                <legend>桌位信息/包房信息</legend>
+                <table class="table width-100-100">
+                    <tr>
+                        <td>桌号/房号</td>
+                        <td>允许拼桌</td>
+                        <td>最低消费</td>
+                        <td>预订时间</td>
+                        <td>可抵用金额</td>
+                    </tr>
+                    <tr>
+                        <td><%=seatOrder.seatName%></td>
+                        <td><%=seatOrder.tableStatus==='y'?'是':'否'%></td>
+                        <td><%=seatOrder.lowCostAmount/100%></td>
+                        <td><%=useCommon.parseDate(seatOrder.bookTime,'Y-m-d')%></td>
+                        <td><%=seatOrder.deductibleAmount/100%></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>消费订单信息</legend>
+                <table class="table width-100-100">
+                    <tr>
+                        <td>订单号</td>
+                        <td>用户</td>
+                        <td>联系方式</td>
+                        <td>订单金额</td>
+                        <td>抵扣金额</td>
+                        <td>下单时间</td>
+                    </tr>
+                    <%order&&order.forEach(function(a){%>
+                    <tr>
+                        <td><%=a.orderNo%></td>
+                        <td><%=a.nickName%></td>
+                        <td><%=a.mobile%></td>
+                        <td><%=a.orderMoney/100%></td>
+                        <td><%=a.deuceMoney/100%></td>
+                        <td><%=a.rowAddTime%></td>
+                    </tr>
+                    <%})%>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>消费品信息</legend>
+                <table class="table width-100-100">
+                    <tr>
+                        <td>订单号</td>
+                        <td>名称</td>
+                        <td>数量</td>
+                        <td>总价</td>
+                        <td>消费时间</td>
+                        <td>状态</td>
+                        <td>购买人</td>
+                        <td>操作人</td>
+                        <td>服务员</td>
+                        <td>备注</td>
+                    </tr>
+                    <%
+                    var detailLs = [];
+                    console.log(detailLs);
+                    order.forEach(function(a){
+                        a.detailLs.forEach(function(b){
+                            return b.orderNo = a.orderNo
+                        });
+                        detailLs = detailLs.concat(a.detailLs);
+                    })
+                    console.log(detailLs);
+                    detailLs&&detailLs.forEach(function(a){%>
+                    <tr>
+                        <td><%=a.orderNo%></td>
+                        <td><%=a.goodsName%></td>
+                        <td><%=a.quantity%></td>
+                        <td><%=(a.unitPrice * a.quantity)/100%></td>
+                        <td><%=a.rowAddTime%></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <%})%>
+                </table>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<script src="/js/build/order-info.js"></script>
+<% include ../../layouts/footer.html%>

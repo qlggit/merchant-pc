@@ -3,10 +3,10 @@ var router = express.Router();
 router.get('/entrance', function(req, res, next) {
     req.session.openId = req.query.openid;
     req.session.nickname = req.query.nickname;
+    req.session.headimgurl = req.query.headimgurl;
+    req.session.gender = req.query.gender || req.query.sex;
     req.session.unionid = req.query.unionid || req.query.openid || req.session.unionid;
-    res.useRedirect(useCommon.addUrlParam(req.session.callback || '/' , {
-        uid:req.session.unionid
-    }));
+    res.useRedirect(useCommon.addUrlParam(req.session.callback || '/'));
 });
 router.get('/login', function(req, res, next) {
     if(req.session.unionid){
@@ -17,7 +17,7 @@ router.get('/login', function(req, res, next) {
 router.get('/jssdk', function(req, res, next) {
     useRequest.send(req , res , {
         url:useConfig.get('wechatJssdkUrl'),
-        data:req.body,
+        data:req.query,
         method:'POST',
         done:function(data){
             res.useSend(data);

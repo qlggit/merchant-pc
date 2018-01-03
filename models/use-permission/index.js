@@ -41,17 +41,20 @@ Permission.init = function(){
         menu0201:'/permission/merchant/role',
         menu0202:'/permission/merchant/user',
 
+        menu0301:'/distribution/order',
+
         menu0401:'/merchant',
         menu0402:'/merchant/music',
         menu0403:'/merchant/activity',
         menu0404:'/merchant/team',
+        menu0405:'/merchant/env',
 
         menu0501:'/message/get',
         menu0502:'/message/send',
         menu0503:'/message/order',
+        menu0504:'/message/user',
 
-        menu0601:'/spread/wechat',
-        menu0602:'/spread/bd',
+        menu06:'/spread/index',
 
         menu07:'/product',
 
@@ -63,17 +66,32 @@ Permission.init = function(){
 
         menu1001:'/member/group',
         menu1002:'/member/list',
-        menu1003:'/member/spread',
 
         menu1101:'/withdraw',
         menu1102:'/withdraw/list',
         menu1103:'/withdraw/bank',
         menu1104:'/withdraw/stream',
 
+        menu1201:'/wine/apply',
+        menu1202:'/wine/list',
+        menu1203:'/wine/history',
+
+        menu1301:'/team/person',
+        menu1302:'/team/duty',
+        menu1303:'/team/org',
+
+
 
         //内部使用菜单
         menu001:'/admin/merchant',
+        menu00201:'/admin/member/list',
+        menu00301:'/admin/finance/list',
         menu004:'/admin/version',
+        menu00501:'/admin/group',
+        menu00502:'/admin/group/lvl',
+        menu00601:'/admin/product/list',
+        menu00602:'/admin/product/category',
+        menu00701:'/admin/adv/banner',
 
 
     };

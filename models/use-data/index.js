@@ -41,20 +41,20 @@ module.exports = {
             }
         })
     },
-    getUserInfo:function(req , res  , username , call ){
+    getUserInfo:function(req , res  , data , call ){
         useRequest.send(req , res , {
             url:useUrl.permissionMerchant.userInfo,
-            data:{
-                username:username,
-            },
+            data:data,
             done:call
         })
     },
-    getMerchantInfo:function(req , res  , channel , call ){
-        call({
-            id:channel||'1',
-            code:'1',
-            name:'酒吧名字',
+    getMerchantInfo:function(req , res  , merchantId , call ){
+        useRequest.send(req , res , {
+            url:useUrl.merchant.info,
+            data:{
+                supplierId:merchantId,
+            },
+            done:call
         })
     },
     setPermission:function( req , res , userInfo ,call){

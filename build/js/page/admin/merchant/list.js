@@ -33,22 +33,21 @@ $(function(){
             $tr.append('<td>'+o.supplierName  +'</td>');
             $tr.append('<td>'+o.supplierPhone   +'</td>');
             $tr.append('<td>'+Dictionary.text('typeCode',o.typeCode )   +'</td>');
-            $tr.append('<td>'+(o.provincesName  + o.cityName )  +'</td>');
+            $tr.append('<td>'+( o.cityName )  +'</td>');
             $tr.append('<td>'+o.supplierAddr   +'</td>');
             $tr.append('<td>' +'</td>');
-            $tr.append('<td>'+o.supplierStar   +'</td>');
             $tr.append('<td><div class="btn-group">' +
                 //(WY.permissionAuthHtml('' , '<a class="btn btn-sm btn-primary update-btn" index="'+i+'">修改</a>')) +
                 // (WY.permissionAuth('')?'<a class="btn btn-sm btn-primary change-btn" status="up" index="'+i+'">上架</a>':'') +
                 // (WY.permissionAuth('')?'<a class="btn btn-sm btn-primary change-btn" status="down" index="'+i+'">下架</a>':'') +
-                (WY.permissionAuth('')?'<a class="btn btn-sm btn-primary change-btn" href="'+
+                (WY.permissionAuth('')?'<a class="btn btn-sm btn-primary" href="'+
                     useCommon.addUrlParam((seatUrl+'/server/admin/seat/create'),{
                         token:sessionJson.merchantUserInfo.tokenModel.token,
                         userId:sessionJson.merchantUserInfo.tokenModel.userId,
                         merchantId:o.supplierId ,
                     })
                     +'" target="_blank">座位管理</a>':'') +
-                // '<a class="btn btn-sm btn-primary delete-btn">删除</a>' +
+                '<a class="btn btn-sm btn-primary delete-btn" index="'+i+'">删除</a>' +
                 '</div></td>');
             $table.append($tr);
         });
@@ -68,6 +67,23 @@ $(function(){
         $window.find('.do-audio-content').attr('showImg','').doFileUpload();
         $dataForm[0].reset();
         updateData = null;
+    });
+    $table.on('click', '.delete-btn' , function(){
+        updateData = showData[$(this).attr('index')];
+        var type = $(this).attr('status');
+        WY.confirm({
+            content:'确认删除此商家?',
+            done:function(){
+                $.post('/admin/merchant/delete',{
+                    supplierId:updateData.supplierId
+                } , function(a){
+                    useCommon.toast(a.message);
+                    if(a.code === 0){
+                        doSearch(aotoPage);
+                    }
+                })
+            }
+        })
     });
     var updateData;
     $table.on('click', '.update-btn' , function(){

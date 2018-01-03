@@ -1,0 +1,54 @@
+<% title="提现详情"%>
+<% include ../../layouts/header.html%>
+<div class="">
+    <div class=" ">
+        <form class="form-horizontal pl-15 merchant-info-form width-70-100">
+            <h4>提现详情</h4>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">提现申请人</label>
+                <div class="col-sm-6">
+                    <input  class="form-control" name="supplierName" value="<%=withdrawInfo.applyUserId%>" readonly >
+                </div>
+            </div>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">提现金额</label>
+                <div class="col-sm-6">
+                    <input  class="form-control" name="supplierName" value="<%=withdrawInfo.amount/100%>" readonly >
+                </div>
+            </div>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">提现银行</label>
+                <div class="col-sm-6">
+                    <input  class="form-control" name="supplierName" value="<%=withdrawInfo.bankName%>" readonly >
+                </div>
+            </div>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">提现银行卡号</label>
+                <div class="col-sm-6">
+                    <input  class="form-control" name="supplierName" value="<%=withdrawInfo.bankCard%>" readonly >
+                </div>
+            </div>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">状态</label>
+                <div class="col-sm-6">
+                    <input  class="form-control" name="supplierName" value="<%=({
+            normal:'审核中',
+            pass:'审核通过',
+            success:'提现成功',
+            fail:'提现失败',
+            refuse:'退回',
+		})[withdrawInfo.status]%>" readonly >
+                </div>
+            </div>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">备注</label>
+                <div class="col-sm-6"><input type="text" class="form-control" value="<%=withdrawInfo.replyContent%>" readonly></div>
+            </div>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">申请时间</label>
+                <div class="col-sm-6"><input type="text" class="form-control" value="<%=withdrawInfo.rowAddTime%>" readonly></div>
+            </div>
+        </form>
+    </div>
+</div>
+<% include ../../layouts/footer.html%>

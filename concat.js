@@ -103,6 +103,13 @@ module.exports = [
     },
     {
         src:[
+            './build/js/page/order/info.js',
+        ],
+        concatName:'order-info.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
             './build/js/page/withdraw/index.js',
         ],
         concatName:'withdraw.js',
@@ -184,6 +191,13 @@ module.exports = [
     },
     {
         src:[
+            './build/js/page/merchant/env.js',
+        ],
+        concatName:'merchant-env.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
             './build/js/page/message/get.js',
         ],
         concatName:'message-get.js',
@@ -205,11 +219,49 @@ module.exports = [
     },
     {
         src:[
+            './build/js/page/message/user.js',
+        ],
+        concatName:'message-user.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
             './build/js/page/spread/index.js',
         ],
         concatName:'spread.js',
         destPath:'./build/js/build/'
     },
+    {
+        src:[
+            './build/js/page/distribution/order.js',
+        ],
+        concatName:'distribution-order.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/page/team/duty.js',
+        ],
+        concatName:'team-duty.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/page/team/org.js',
+        ],
+        concatName:'team-org.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/page/team/person.js',
+        ],
+        concatName:'team-person.js',
+        destPath:'./build/js/build/'
+    },
+
+
+
     {
         src:[
             './build/js/page/admin/merchant/list.js',
@@ -222,6 +274,62 @@ module.exports = [
             './build/js/page/admin/version.js',
         ],
         concatName:'admin-version.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/page/admin/group/lvl.js',
+        ],
+        concatName:'admin-group-lvl.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/page/admin/group/list.js',
+        ],
+        concatName:'admin-group-list.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/page/admin/product/list.js',
+        ],
+        concatName:'admin-product-list.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/page/admin/product/category.js',
+        ],
+        concatName:'admin-product-category.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/page/admin/adv/banner.js',
+        ],
+        concatName:'admin-adv-banner.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/page/admin/member/list.js',
+        ],
+        concatName:'admin-member-list.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/page/admin/finance/audit.js',
+        ],
+        concatName:'admin-finance-audit.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/page/admin/finance/list.js',
+        ],
+        concatName:'admin-finance-list.js',
         destPath:'./build/js/build/'
     },
 ];

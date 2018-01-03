@@ -5,18 +5,16 @@
         <form class="form-inline search-form pl-15">
             <div class="form-group">
                 <select class="form-control"
-                        load-key="yukeGoodsTypeId"
+                        load-key="goodsTypeId"
                         load-val="typeName"
-                        data-dictionary="/product/category"
+                        data-dictionary="/admin/product/category/data"
                         name="goodsTypeId"></select>
             </div>
             <div class="form-group">
                 <select class="form-control" data-dictionary="productStatus" name="status"></select>
             </div>
             <button type="submit" class="btn btn-default">查询</button>
-            <% if(usePermission.auth('menu0701')){%>
-                <button type="button" class="btn btn-primary add-new-btn">添加</button>
-            <%}%>
+            <button type="button" class="btn btn-primary add-new-btn">添加</button>
         </form>
         <div class="mt-15">
             <table class="table width-100 show-data-table">
@@ -54,9 +52,9 @@
                         <label class="control-label col-sm-4">类型</label>
                         <div class="col-sm-6">
                             <select class="form-control"
-                                    load-key="yukeGoodsTypeId"
+                                    load-key="goodsTypeId"
                                     load-val="typeName"
-                                    data-dictionary="/product/category"
+                                    data-dictionary="/admin/product/category/data"
                                     name="goodsTypeId"></select>
                         </div>
                     </div>

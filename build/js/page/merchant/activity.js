@@ -33,7 +33,7 @@ $(function(){
             $tr.append('<td>'+o.actName +'</td>');
             $tr.append('<td>'+o.actDate  +'</td>');
             $tr.append('<td><a href="'+o.link+'" target="_blank">链接</a></td>');
-            $tr.append('<td><img src="'+o.faceFileId +'" class="ico-40" alt=""></td>');
+            $tr.append('<td><img src="'+o.faceFile  +'" class="ico-40 show-big-img" alt=""></td>');
             $tr.append('<td>'+({
                 normal:'初始化',
                 up:'上架',
@@ -68,7 +68,7 @@ $(function(){
         $window.modal();
         updateData = showData[$(this).attr('index')];
         $dataForm.__formData(updateData);
-        $window.find('.show-file-content').attr('showImg',updateData.faceFileId ).showFileUpload();
+        $window.find('.show-file-content').attr('showImg',updateData.faceFile  ).showFileUpload();
     });
     $table.on('click', '.change-btn' , function(){
         updateData = showData[$(this).attr('index')];
@@ -116,7 +116,7 @@ $(function(){
                 required:1,
                 message:'请输入活动时间'
             },
-            faceFileId :{
+            faceFile  :{
                 required:1,
                 message:'请上传音乐图片'
             },

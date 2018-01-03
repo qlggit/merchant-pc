@@ -1,9 +1,9 @@
 <div class="ms-toast-window" style="display: none;">
         <div class="break-all text text-center"></div>
 </div>
-<div class="show-window-content display-table ms-loading-window" style="display: none;">
-    <div>
-        <img src="/images/loading.gif" style="width: 100px;">
+<div class="z-index-9999  ms-loading-window position-fixed width-100-100 height-100-100 left-0 top-0" style="display: none;">
+    <div class="flex-center width-100-100 height-100-100">
+        <div><img src="/images/loading.gif" style="width: 100px;"></div>
     </div>
 </div>
 
@@ -34,7 +34,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary this-submit-btn">确定</button>
-                <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary">关闭</button>
+                <button type="button" class="btn btn-primary this-close-btn">关闭</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -46,8 +46,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">提示</h4>
             </div>
-            <div class="modal-body text-center break-all">
-                <div class="modal-placeholder"></div>
+            <div class="modal-body text-center break-all ">
+                <div class="modal-placeholder pb-40 fz-34"></div>
                 <input type="text" class="modal-input mt-25" placeholder="">
             </div>
             <div class="modal-footer">
@@ -61,5 +61,39 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal fade modal-video-window" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body text-center">
+                <video src="" controls="controls" width="500px" height="600px"></video>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary">关闭</button>
+            </div>
+
+        </div>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal fade modal-image-window" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">提示</h4>
+            </div>
+            <div class="modal-body text-center">
+                <div class="img" style="width: 500px;height: 600px;background-size: contain;background-repeat: no-repeat"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" aria-label="Close" class="btn btn-primary">关闭</button>
+            </div>
+
+        </div>
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->

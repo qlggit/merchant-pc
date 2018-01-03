@@ -13,6 +13,15 @@ router.get('/list',useValidate.hasLogin, function(req, res, next) {
         }
     })
 });
+router.get('/codeList',function(req, res, next) {
+    useRequest.send(req , res , {
+        url:useUrl.bank.codeList,
+        data:req.query,
+        done:function(a){
+            res.useSend(a);
+        }
+    })
+});
 router.post('/add',useValidate.hasLogin, function(req, res, next) {
     req.body.supplierId = req.session.userInfo.company;
     req.body.yzm = 123456;

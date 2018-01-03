@@ -1,0 +1,92 @@
+<% title="用户资料"%>
+<% include ../../../layouts/header.html%>
+<div class="">
+    <div class=" ">
+        <form class="form-horizontal pl-15 merchant-info-form width-70-100">
+            <h4>用户资料</h4>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">昵称</label>
+                <div class="col-sm-6">
+                    <input  class="form-control" name="supplierName" value="<%=userInfo.nickname%>" readonly>
+                </div>
+            </div>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">用户ID</label>
+                <div class="col-sm-6">
+                    <input  class="form-control" name="supplierName" value="<%=userInfo.userId%>" readonly>
+                </div>
+            </div>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">头像</label>
+                <div class="col-sm-6">
+                    <img src="<%=userInfo.headImg%>" class="max-h-100" alt="">
+                </div>
+            </div>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">性别</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" value="<%=({0:'未知',
+            1:'男',
+            2:'女',})[userInfo.gender]%>" readonly>
+                </div>
+            </div>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">余额</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" value="<%=userInfo.balance/100%>" readonly>
+                </div>
+            </div>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">地区</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" value="<%=userInfo.provincesName||''%><%=userInfo.cityName%>" readonly>
+                </div>
+            </div>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">地址</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" value="<%=userInfo.address%>" readonly>
+                </div>
+            </div>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">年龄</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" value="<%=userInfo.age%>" readonly>
+                </div>
+            </div>
+            <div class="form-group pt-40 ">
+                <label class="col-sm-2 control-label">注册时间</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" value="<%=userInfo.registerTime%>" readonly>
+                </div>
+            </div>
+            <div class="form-group pt-40 pl-40">
+                <fieldset>
+                    <legend>第三方资料</legend>
+                    <table class="table">
+                        <tr>
+                            <td>渠道</td>
+                            <td>openId</td>
+                            <td>uid</td>
+                            <td>注册时间</td>
+                        </tr>
+                        <%userInfo.sanfangs.forEach(function(a){%>
+                        <tr>
+                            <td><%=({
+                                weixin:'微信',
+                                qq:'QQ',
+                                sina:'微博',
+                                sys:'系统',
+                                })[a.sType]%></td>
+                            <td><%=a.openId%></td>
+                            <td><%=a.uid%></td>
+                            <td><%=a.rowAddTime%></td>
+                        </tr>
+                        <%})%>
+                    </table>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+</div>
+<% include ../../../layouts/footer.html%>

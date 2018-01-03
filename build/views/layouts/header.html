@@ -19,6 +19,15 @@
             useCommon.loading = false;
             var data = useCommon.parseJSON(res.responseText) || {};
             if(ajaxOptions.notErrorHandler)return false;
+            if(res.status === 401){
+                WY.alert({
+                    content:'登录超时，请重新登录',
+                    done:function(){
+                        location.href = '/login';
+                    }
+                });
+                return false;
+            }
             if(res.status === 0){
                 $.alert({
                     content:ajaxOptions.errorText || '系统繁忙 请稍后再试'
@@ -32,7 +41,7 @@
             else {
                 $.alert({
                     content:data.message || '系统繁忙 请稍后再试',
-                    done:function(){
+                    done:function(data){
                         if(data.redirectUrl)location.href = data.redirectUrl;
                     }
                 });

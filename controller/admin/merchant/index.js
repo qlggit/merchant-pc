@@ -12,34 +12,19 @@ router.post('/add',useValidate.hasLogin,function(req, res, next) {
         done:function(a){
             if(a.code !== 0)return res.useSend(a);
             var merchantId = a.data.supplierId;
-            //注册账号
+            //添加管理员
             useRequest.send(req , res , {
-                url:useUrl.login.apiLogin,
+                url:useUrl.permissionMerchant.merchantAdminAdd,
                 data:{
-                    deviceType:'PC',
-                    gender :'3',
-                    mobile  :req.body.supplierPhone,
-                    nickname  :req.body.supplierName,
-                    stype :'qq' ,
-                    sType :'qq' ,
-                    uid:req.body.supplierPhone + '-' + merchantId
+                    username  :req.body.supplierPhone,
+                    merchantName  :req.body.supplierName,
+                    merchantId  :merchantId,
+                    userId  :merchantId,
+                    uid  :a.data.uuid ,
                 },
                 method:'POST',
                 done:function(a){
-                    if(a.code !== 0)return res.useSend(a);
-                    //添加管理员
-                    useRequest.send(req , res , {
-                        url:useUrl.permissionMerchant.merchantAdminAdd,
-                        data:{
-                            username  :req.body.supplierPhone,
-                            merchantName  :req.body.supplierName,
-                            merchantId  :merchantId,
-                        },
-                        method:'POST',
-                        done:function(a){
-                            res.useSend(a);
-                        }
-                    })
+                    res.useSend(a);
                 }
             })
         }
@@ -49,6 +34,15 @@ router.get('/data',useValidate.hasLogin,function(req, res, next) {
     useRequest.send(req , res , {
         url:useUrl.merchant.list,
         data:req.query,
+        done:function(a){
+            res.useSend(a);
+        }
+    })
+});
+router.post('/delete',useValidate.hasLogin,function(req, res, next) {
+    useRequest.send(req , res , {
+        url:useUrl.merchant.delete,
+        data:req.body,
         done:function(a){
             res.useSend(a);
         }

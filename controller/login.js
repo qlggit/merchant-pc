@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 router.get('/', function(req, res, next) {
     res.render('login',{
+        hostname:useConfig.get('hostname'),
         NODE_ENV:process.env.NODE_ENV
     });
 });
@@ -37,10 +38,8 @@ router.post('/', function(req, res, next) {
                 url:useUrl.login.apiLogin,
                 data:{
                     deviceType:'PC',
-                    gender : '3',
-                    stype :'qq' ,
-                    sType :'qq' ,
-                    uid:isAdmin?'admin':a.username + '-' + a.data.company
+                    sType :'sys' ,
+                    uid:a.data.uid || (isAdmin?'admin':a.data.username + '-' + a.data.company)
                 },
                 method:'POST',
                 done:function(a){
@@ -55,7 +54,8 @@ router.post('/', function(req, res, next) {
     })
 });
 router.post('/update', function(req, res, next) {
-    var loginUrl = req.body.username === 'admin'?useUrl.login.update:useUrl.merchant.reset;
+    req.body.username = req.session.username;
+    var loginUrl = req.session.username === 'admin'?useUrl.login.update:useUrl.merchant.reset;
     useRequest.send(req , res , {
         url:loginUrl,
         data:req.body,

@@ -32,35 +32,35 @@
                     <div class="form-group" >
                         <label class="control-label col-sm-4">开户名</label>
                         <div class="col-sm-6">
-                            <input class="form-control"  name="hm" maxlength="20" placeholder="请输入开户名">
+                            <input class="form-control"  name="accountName" maxlength="20" placeholder="请输入开户名">
                         </div>
                     </div>
                     <div class="form-group" >
-                        <input name="khh" type="hidden">
                         <label class="control-label col-sm-4">开户行</label>
                         <div class="col-sm-6">
                             <select class="form-control"
-                                    data-dictionary="bankList"
-                                    name="yhkLxId"
-                                    setname="[name=khh]"></select>
+                                    data-dictionary="/withdraw/bank/codeList"
+                                    load-key="bankCode"
+                                    load-val="bankName"
+                                    name="bankCode"></select>
                         </div>
                     </div>
                     <div class="form-group" >
                         <label class="control-label col-sm-4">开户行地址</label>
                         <div class="col-sm-6">
-                            <input class="form-control"  name="khhdz" maxlength="30" placeholder="请输入开户行地址">
+                            <input class="form-control"  name="openAddress" maxlength="30" placeholder="请输入开户行地址">
                         </div>
                     </div>
                     <div class="form-group" >
                         <label class="control-label col-sm-4">开户许可</label>
                         <div class="col-sm-6">
-                            <input class="form-control"  name="khxk" maxlength="30" placeholder="请输入开户许可">
+                            <input class="form-control"  name="accountPermit" maxlength="30" placeholder="请输入开户许可">
                         </div>
                     </div>
                     <div class="form-group" >
                         <label class="control-label col-sm-4">银行卡号</label>
                         <div class="col-sm-6">
-                            <input class="form-control"  name="yhkh" maxlength="20" placeholder="请输入银行卡号">
+                            <input class="form-control"  name="bankCard" maxlength="20" placeholder="请输入银行卡号">
                         </div>
                     </div>
                     <div class="form-group" >

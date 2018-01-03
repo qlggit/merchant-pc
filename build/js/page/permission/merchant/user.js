@@ -135,7 +135,7 @@ $(function(){
             channel:merchant_channel,
             itemType:'open'
         }));
-        qrcodeCanvas.putCanvas(qrcodeCanvas.getUrl('/server/qrcode/operator/'+sessionJson.username),'请扫码二维码成为操作员');
+        qrcodeCanvas.putCanvas(qrcodeCanvas.getUrl('/server/qrcode/operator/'+sessionJson.userInfo._id + '/' + sessionJson.merchantUserInfo.userId),'请扫码二维码成为操作员');
     };
     wsData.onmessage= function(data , ws){
         if(data.code === 0){

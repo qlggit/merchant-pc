@@ -28,11 +28,11 @@ $(function(){
         $.each(showData , function(i , o){
             var $tr = $('<tr>').addClass('data-list');
             $tr.append('<td>'+(i+1)+'</td>');
-            $tr.append('<td>'+o.hm +'</td>');
-            $tr.append('<td>'+o.khh  +'</td>');
-            $tr.append('<td>'+o.khhdz  +'</td>');
-            $tr.append('<td>'+o.khxk  +'</td>');
-            $tr.append('<td>'+o.yhkh  +'</td>');
+            $tr.append('<td>'+o.accountName  +'</td>');
+            $tr.append('<td>'+ o.bankName +'</td>');
+            $tr.append('<td>'+o.openAddress   +'</td>');
+            $tr.append('<td>'+o.accountPermit   +'</td>');
+            $tr.append('<td>'+o.bankCard   +'</td>');
             $tr.append('<td><div class="btn-group">' +
                 (WY.permissionAuthHtml('' , '<a class="btn btn-sm btn-primary update-btn" index="'+i+'">修改</a>')) +
                  '<a class="btn btn-sm btn-primary delete-btn">删除</a>' +
@@ -81,15 +81,19 @@ $(function(){
     $window.find('.this-submit-btn').click(function(){
         var data = $dataForm.__serializeJSON();
         var valid = useValidate.validator({
-            hm:{
+            accountName :{
                 required:1,
                 message:'请输入开户名'
             },
-            khhdz :{
+            bankCode   :{
+                required:1,
+                message:'请选择开户银行'
+            },
+            openAddress  :{
                 required:1,
                 message:'请输入开户行地址'
             },
-            yhkh :{
+            bankCard  :{
                 required:1,
                 message:'请输入银行卡号'
             },
@@ -99,13 +103,13 @@ $(function(){
             return false;
         }
         if(updateData){
-            data.yhkId    = updateData.yhkId   ;
+            data.supplierBankId    = updateData.supplierBankId   ;
         }else{
         }
         $.post('/withdraw/bank/' + (updateData?'edit':'add') , data , function(a){
             if(a.code ===0){
                 $window.modal('hide');
-                doSearch(data.yhkId?aotoPage:1);
+                doSearch(updateData?aotoPage:1);
             }else{
                 useCommon.toast(a.message);
             }

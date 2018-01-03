@@ -5,18 +5,45 @@ var Dictionary = {
 			up:'上架',
 			down:'下架',
 		},
+        fileType:{
+            img:'图片',
+            video:'视频',
+		},
+        gender:{
+            0:'未知',
+            1:'男',
+            2:'女',
+		},
         showStatus:{
 			normal:'正常',
             deleted:'隐藏',
+			y:'是',
+			n:'否'
+		},
+        clientLoc:{
+			APP:'APP',
+            WX:'微信',
+            PC:'电脑端',
 		},
         appChannel:{
 			android:'Android',
             ios:'IOS',
 		},
-        appStatus:{
-			normal:'正常使用',
-            up:'需要升级',
-            die:'废弃的',
+        checkStatus:{
+            PASS :'审核通过',
+            NO_PASS :'审核未通过',
+		},
+        groupLvl:{
+			'1':'lvl1',
+			'2':'lvl2',
+			'3':'lvl3',
+			'4':'lvl4',
+			'5':'lvl5',
+			'6':'lvl6',
+			'7':'lvl7',
+			'8':'lvl8',
+			'9':'lvl9',
+			'10':'lvl10',
 		},
         typeCode:{
 			bar:'酒吧',
@@ -31,11 +58,11 @@ var Dictionary = {
             5:'很不满意',
 		},
         withdrawStatus:{
-			1:'审核中',
-            2:'审核通过',
-            3:'提现成功',
-            4:'提现失败',
-            5:'退回',
+            normal:'审核中',
+            pass:'审核通过',
+            success:'提现成功',
+            fail:'提现失败',
+            refuse:'退回',
 		},
         bankList:{
 			1:'中国工商银行',

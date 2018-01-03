@@ -4,11 +4,14 @@ $(function(){
     if(!$table[0])return false;
     var $searchForm = $('.search-form');
     var page = 1;
+    $searchForm.submit(function(){
+        doSearch(1);
+        return false;
+    })
     function doSearch(page){
-        $.get('/member/list',{
-            goodsTypeId:$searchForm.find('[name=goodsTypeId]').val(),
+        $.get('/member/list/data',{
             pageNum:page || 1,
-            pageSize:1,
+            pageSize:10,
         } , function(a){
             allData = a.data;
             setPage(page);
@@ -21,14 +24,11 @@ $(function(){
         $.each(showData , function(i , o){
             var $tr = $('<tr>').addClass('data-list');
             $tr.append('<td>'+(i+1)+'</td>');
-            $tr.append('<td>'+o.goodsName+'</td>');
-            $tr.append('<td>'+o.img+'</td>');
-            $tr.append('<td>'+o.goodsTypeName+'</td>');
-            $tr.append('<td>'+o.unitPrice+'</td>');
-            $tr.append('<td>'+o.unitPrice+'</td>');
-            $tr.append('<td>'+o.unitPrice+'</td>');
+            $tr.append('<td>'+o.nickname+'</td>');
+            $tr.append('<td>'+o.mobile+'</td>');
+            $tr.append('<td>'+o.cityName+'</td>');
             $tr.append('<td><div class="btn-group">' +
-                '<a class="btn btn-sm btn-primary update-btn" index="'+i+'">修改</a>' +
+                '<a class="btn btn-sm btn-primary" index="'+i+'">消费详情</a>' +
                 // '<a class="btn btn-sm btn-primary delete-btn">删除</a>' +
                 '</div></td>');
             $table.append($tr);

@@ -6,16 +6,11 @@ function wsLogin(options){
 }
 wsLogin.prototype = {
     init:function(){
-        this.options.env = this.options.env || 'dev';
         this.ws();
     },
     ws:function(){
         var options = this.options;
-        var wsUrl = 'ws://' + ({
-            dev:'192.168.1.119:3004',
-            test:'192.168.1.245:3004',
-            online:'47.100.20.78:3004',
-        })[this.options.env];
+        var wsUrl = 'ws://' + (resJson.hostname) + ':3004';
         var socket=new WebSocket(wsUrl);
         socket.onopen = function(){
             options.onopen && options.onopen(socket);

@@ -120,12 +120,8 @@ $.fn.dataTablePage = function(options){
                 $this.append($('<span class="more">...</span>'));
                 max = Math.min(options.allPage , options.page + 2);
             }
-            if(options.allPage - 5 < options.page){
-                max = options.allPage;
-            }
             min = max - 4;
         }
-
         for(var i = min ; i <= max ; i ++ ){
             var $number = $('<btn class="btn btn-xs btn-default mr-5"></btn>').text(i).attr('num' , i);
             $this.append($number);

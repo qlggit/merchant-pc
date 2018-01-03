@@ -1,0 +1,82 @@
+<% title="首页banner"%>
+<% include ../../../layouts/header.html%>
+<div class="">
+    <div class=" ">
+        <form class="form-inline search-form pl-15">
+            <div class="form-group">
+                <select name="clinetLoc" class="form-control" data-dictionary="clientLoc"></select>
+            </div>
+            <div class="form-group">
+                <select name="bannerTypeCode" class="form-control" data-dictionary="typeCode"></select>
+            </div>
+            <button type="submit" class="btn btn-default">查询</button>
+            <button type="button" class="btn btn-primary add-new-btn">添加</button>
+        </form>
+        <div class="mt-15">
+            <table class="table width-100 show-data-table">
+                <tr>
+                    <td>序号</td>
+                    <td>渠道</td>
+                    <td>类型</td>
+                    <td>名称</td>
+                    <td>图片</td>
+                    <td>链接</td>
+                    <td>状态</td>
+                    <td>操作</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal fade show-info-window" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">banner</h4>
+            </div>
+            <div class="modal-body ">
+                <form class="form-horizontal">
+                    <input type="hidden" name="status" value="up">
+                    <input type="hidden" name="dic" value="remark">
+                    <div class="form-group" >
+                        <label class="control-label col-sm-4">名称</label>
+                        <div class="col-sm-6">
+                            <input class="form-control"  name="title" maxlength="20" placeholder="请输入名称">
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <label class="control-label col-sm-4">渠道</label>
+                        <div class="col-sm-6">
+                            <select name="clinetLoc" class="form-control" data-dictionary="clientLoc"></select>
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <label class="control-label col-sm-4">类型</label>
+                        <div class="col-sm-6">
+                            <select name="bannerTypeCode" class="form-control" data-dictionary="typeCode"></select>
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <label class="control-label col-sm-4">跳转链接</label>
+                        <div class="col-sm-6">
+                            <input class="form-control"  name="link" maxlength="200" placeholder="请输入跳转链接">
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <label class="control-label col-sm-4">图片</label>
+                        <div class="col-sm-6">
+                            <div class="show-file-content upload-content" show-name="bannerUrl"></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary this-submit-btn">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script src="/js/build/admin-adv-banner.js"></script>
+<% include ../../../layouts/footer.html%>

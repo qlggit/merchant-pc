@@ -11,6 +11,7 @@ module.exports = {
         qrcode:h5Api + '/server/merchant/login/qrcode',
 
         apiLogin:apiUrl + '/api/user/v_1/login',
+        merchantLogin:apiUrl + '/api/user/v_1/bindUser',
     },
     permissionAdmin:{
         permission:h5Api + '/server/admin/permission/list',
@@ -61,6 +62,7 @@ module.exports = {
     },
     user:{
         qrcodeAdd:h5Api + '/server/merchant/permission/user/qrcodeAdd',
+        info:apiUrl + '/api/user/v_1/infoByuserId',
     },
     merchant:{
         login:h5Api + '/server/merchant/login',
@@ -71,6 +73,7 @@ module.exports = {
         edit:apiUrl + '/mgr/supplier/v_1/edit',
         add:apiUrl + '/mgr/supplier/v_1/add',
         list:apiUrl + '/mgr/supplier/v_1/list',
+        delete:apiUrl + '/mgr/supplier/v_1/delete',
 
         musicAdd:apiUrl + '/mgr/supplier/music/v_1/add',
         musicEdit:apiUrl + '/mgr/supplier/music/v_1/edit',
@@ -87,6 +90,16 @@ module.exports = {
         actList:apiUrl + '/mgr/supplier/act/v_1/list',
 
 
+        teamAdd:apiUrl + '/mgr/supplier/team/v_1/add',
+        teamEdit:apiUrl + '/mgr/supplier/team/v_1/edit',
+        teamInfo:apiUrl + '/mgr/supplier/team/v_1/info',
+        teamList:apiUrl + '/mgr/supplier/team/v_1/list',
+
+        envAdd:apiUrl + '/mgr/supplier/env/v_1/add',
+        envEdit:apiUrl + '/mgr/supplier/env/v_1/edit',
+        envList:apiUrl + '/mgr/supplier/env/v_1/envlist',
+
+
     },
     product:{
         list:apiUrl + '/mgr/goods/v_1/list',
@@ -95,32 +108,92 @@ module.exports = {
         down:apiUrl + '/mgr/goods/v_1/downGoods',
         edit:apiUrl + '/mgr/goods/v_1/edit',
         num:apiUrl + '/mgr/goods/v_1/editGoodsStock',
-        category:apiUrl + '/api/goods/v_1/listGoodsType',
+        category:apiUrl + '/mgr/goods/type/v_1/list',
+        categoryAdd:apiUrl + '/mgr/goods/type/v_1/add',
+        categoryEdit:apiUrl + '/mgr/goods/type/v_1/edit',
     },
     order:{
         list:apiUrl + '/api/shopping/v_1/list',
+        info:apiUrl + '/api/shopping/v_1/orderDetail',
+        infoBySeat:apiUrl + '/api/shopping/v_1/orderGoodsInfo',
+
 
         seatList:apiUrl + '/api/seat/v_1/orderList',
+        seatInfo:apiUrl + '/api/seat/v_1/info',
+        seatCost:apiUrl + '/mgr/orders/v_1/cost',
 
+        pingList:apiUrl + '/api/seat/v_1/pzRecordLs',
 
         rateList:apiUrl + '/mgr/comment/v_1/list',
         rateDelete:apiUrl + '/mgr/comment/v_1/delete',
+
+        distributeList:apiUrl + '/mgr/orders/v_1/distributeList',
+        distribute:apiUrl + '/mgr/orders/v_1/distribute',
+
+
     },
     bank:{
-        list:apiUrl + '/mgr/finance/yhk/v_1/list',
-        add:apiUrl + '/mgr/finance/yhk/v_1/add',
-        edit:apiUrl + '/mgr/finance/yhk/v_1/edit',
-        delete:apiUrl + '/mgr/finance/yhk/v_1/delete',
+        list:apiUrl + '/mgr/finance/bank/v_1/list',
+        add:apiUrl + '/mgr/finance/bank/v_1/add',
+        edit:apiUrl + '/mgr/finance/bank/v_1/edit',
+        codeList:apiUrl + '/mgr/finance/bank/v_1/bankList',
     },
     withdraw:{
-        add:apiUrl + '/mgr/finance/txgl/v_1/add',
-        list:apiUrl + '/mgr/finance/txgl/v_1/list',
-        info:apiUrl + '/mgr/finance/txgl/v_1/info',
+        add:apiUrl + '/mgr/finance/withdraw/v_1/apply',
+        list:apiUrl + '/mgr/finance/withdraw/v_1/list',
+        info:apiUrl + '/mgr/finance/withdraw/v_1/info',
+        audit:apiUrl + '/mgr/finance/withdraw/v_1/audit',
 
         stream:apiUrl + '/mgr/finance/lszd/v_1/list',
     },
     city:{
         patent:apiUrl + '/api/area/v_1/list',
         child:apiUrl + '/api/area/v_1/childList',
+    },
+    version:{
+        data:apiUrl + '/mgr/appversion',
+        add:apiUrl + '/mgr/appversion/v_1/add',
+        update:apiUrl + '/mgr/appversion/v_1/edit',
+        off:apiUrl + '/mgr/appversion/v_1/off',
+        on:apiUrl + '/mgr/appversion/v_1/on',
+    },
+    group:{
+        lvlAdd:apiUrl + '/mgr/viplevel/v_1/add',
+        lvlDelete:apiUrl + '/mgr/viplevel/v_1/delete',
+        lvlList:apiUrl + '/mgr/viplevel',
+
+        list:apiUrl + '/mgr/chatGroup',
+        add:apiUrl + '/mgr/chatGroup/v_1/add',
+        delete:apiUrl + '/mgr/chatGroup/v_1/delete',
+
+    },
+    adv:{
+        bannerAdd:apiUrl + '/mgr/banner/v_1/add',
+        bannerEdit:apiUrl + '/mgr/banner/v_1/edit',
+        bannerList:apiUrl + '/mgr/banner/v_1/list',
+    },
+    member:{
+        list:apiUrl + '/mgr/user/v_1/list',
+    },
+    wine:{
+        list:apiUrl + '/api/wine/v_1/accessWineList',
+        audit:apiUrl + '/api/wine/v_1/auditAccessWine',
+        detail:apiUrl + '/api/wine/v_1/wineList',
+    },
+    message:{
+        userList:apiUrl + '/mgr/userview',
+    },
+    team:{
+        dutyAdd:apiUrl + '/mgr/supplier/duty/v_1/add',
+        dutyList:apiUrl + '/mgr/supplier/duty/v_1/list',
+
+        orgAdd:apiUrl + '/mgr/supplier/org/v_1/add',
+        orgList:apiUrl + '/mgr/supplier/org/v_1/list',
+        orgChildList:apiUrl + '/mgr/supplier/org/v_1/childlist',
+
+        personList:apiUrl+'/mgr/supplier/staff/v_1/list',
+        personAddTask:apiUrl+'/mgr/supplier/staff/v_1/addTask',
+        personAddDuty:apiUrl+'/mgr/supplier/staff/v_1/addDuty',
+        personAmount:apiUrl+'/mgr/supplier/staff/v_1/setAmount',
     },
 };

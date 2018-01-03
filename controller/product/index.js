@@ -3,7 +3,7 @@ var router = express.Router();
 router.get('/',useValidate.hasLogin, usePermission.authMenu('menu07'),function(req, res, next) {
     res.useRender('product/list');
 });
-router.post('/add',useValidate.hasLogin, usePermission.authMenu('menu0701'),function(req, res, next) {
+router.post('/add',useValidate.hasLogin,function(req, res, next) {
     req.body.supplierId = req.session.userInfo.company;
     useRequest.send(req , res , {
         url:useUrl.product.add,
@@ -14,7 +14,7 @@ router.post('/add',useValidate.hasLogin, usePermission.authMenu('menu0701'),func
         }
     })
 });
-router.post('/update',useValidate.hasLogin, usePermission.authMenu('menu0702'),function(req, res, next) {
+router.post('/update',useValidate.hasLogin, function(req, res, next) {
     req.body.supplierId = req.session.userInfo.company;
     useRequest.send(req , res , {
         url:useUrl.product.edit,
@@ -25,7 +25,7 @@ router.post('/update',useValidate.hasLogin, usePermission.authMenu('menu0702'),f
         }
     })
 });
-router.post('/change',useValidate.hasLogin, usePermission.authMenu('menu0703'),function(req, res, next) {
+router.post('/change',useValidate.hasLogin, function(req, res, next) {
     useRequest.send(req , res , {
         url:useUrl.product[req.body.type],
         data:{

@@ -40,6 +40,14 @@
 				return key + ' 必须是整数 but ' + val;
 			}
 		},
+		isNumber:{
+			method:function(val){
+				return /^(\-)?\d+(\.\d+)?$/.test(val);
+			},
+			message:function(key, param , val){
+				return key + ' 必须是数字 but ' + val;
+			}
+		},
 		isMoney:{
 			method:function(val){
 				return /^\d+(\.\d{1,2})?$/.test(val);

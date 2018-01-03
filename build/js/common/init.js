@@ -20,14 +20,19 @@ $(function(){
     if($.fn.rangeTimeSelect)$('.range-time-select').rangeTimeSelect({});
     if($.fn.oneDatetimePicker)$('.date-time-picker').oneDatetimePicker({});
     $('.show-file-content').showFileUpload();
+    $('body').on('click' , '.show-big-img' , function(){
+        WY.showImage($(this).attr('src') , $(this).attr('title'));
+    })
 });
 
 $.uploadFile = function(file ,options,data, call){
+    options = options || {};
     var formData = new FormData();
     formData.append(options.fileName || 'filename' , file);
     for(var i in data){
         formData.append(i , data[i]);
     }
+    WY.loading(1);
     $.ajax({
         url : options.url || '/file/api',
         type : "POST",
@@ -39,11 +44,11 @@ $.uploadFile = function(file ,options,data, call){
         contentType : false,
         errorText:'上传失败',
         success:function(o){
-            useCommon.loading = false;
+            WY.loading(0);
             if(call)call(o);
         },
         error:function(o){
-            useCommon.loading = false;
+            WY.loading(0);
             if(call)call(o);
         }
     });
@@ -54,11 +59,12 @@ $.fn.showFileUpload = function(options){
         var $this = $(this);
         var showName = (options.showName|| $this.attr('show-name') || 'showName');
         var fileName = (options.fileName|| $this.attr('file-name') || 'filename');
+        var accept = (options.accept|| $this.attr('file-accept') || 'image/jpg,image/jpeg,image/png');
         $this.html('').append($('<div class="img-content">'+
             '<div class="del-ico">×</div>'+
             '<img src="" alt="" class="img-thumbnail">'+
             '</div>'))
-            .append($('<input type="file" accept="image/jpg,image/jpeg,image/png" class="upload-file" name="'+fileName+'">'))
+            .append($('<input type="file" accept="'+accept+'" class="upload-file" name="'+fileName+'">'))
             .append($('<input type="hidden" class="show-file-name" name="'+showName+'">'))
             .append($('<div class="add-ico text-center">+</div>'));
         $this.find(':file').change(function(){
@@ -117,6 +123,7 @@ $.fn.doFileUpload = function(options){
                 } ,options.data || {}, function(a){
                     if(a.code === 10000 || a.code === "10000"){
                         showUrl(useCommon.concatImgUrl(a.data.filePath));
+                        options.done && options.done(a.data.filePath);
                     }else{
                         useCommon.toast(a.message);
                     }
