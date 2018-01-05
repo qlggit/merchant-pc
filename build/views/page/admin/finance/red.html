@@ -1,0 +1,37 @@
+<% title = '提现管理'%>
+<% include ../../../layouts/header.html%>
+<link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css">
+<div class="">
+    <div class=" ">
+        <form class="form-inline search-form pl-15 range-time-select">
+            <div class="form-group">
+                <input type="text" name="nicknameOrMobile" class="form-control" placeholder="昵称或手机号">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control start-time" placeholder="开始时间">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control end-time" placeholder="结束时间">
+            </div>
+            <div class="form-group">
+                <select class="form-control" data-dictionary="redStatus" name="status"></select>
+            </div>
+            <button type="submit" class="btn btn-default">查询</button>
+        </form>
+        <div class="mt-15">
+            <table class="table width-100 show-data-table">
+                <tr>
+                    <td>序号</td>
+                    <td>金额</td>
+                    <td>发起人</td>
+                    <td>人数</td>
+                    <td>状态</td>
+                    <td>结束时间</td>
+                    <td>操作</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="/js/build/admin-finance-red.js"></script>
+<% include ../../../layouts/footer.html%>

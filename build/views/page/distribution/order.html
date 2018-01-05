@@ -17,10 +17,50 @@
                     <td>用户</td>
                     <td>手机号</td>
                     <td>下单时间</td>
+                    <td>订座时间</td>
                     <td>座位</td>
                     <td>操作</td>
                 </tr>
             </table>
+        </div>
+    </div>
+</div>
+<div class="modal fade distribute-info-window" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">配送信息</h4>
+            </div>
+            <div class="modal-body ">
+                <form class="form-horizontal">
+                    <div class="form-group" >
+                        <label class="control-label col-sm-3">服务员</label>
+                        <div class="col-sm-2">
+                            <input class="form-control search-input"  maxlength="5" placeholder="检索">
+                        </div>
+                        <div class="col-sm-5">
+                            <select name="staffId" class="form-control" id="">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <label class="control-label col-sm-4">商品列表</label>
+                    </div>
+                    <div class="form-group" >
+                        <div class="col-sm-10">
+                            <table class="table">
+                               <tr><td>商品名称</td><td>数量</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary this-submit-btn">确定</button>
+            </div>
         </div>
     </div>
 </div>

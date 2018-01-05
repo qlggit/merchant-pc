@@ -13,5 +13,14 @@ router.get('/list',useValidate.hasLogin, function(req, res, next) {
         }
     });
 });
+router.get('/infoBySeat',useValidate.hasLogin, function(req, res, next) {
+    useRequest.send(req , res , {
+        url:useUrl.order.infoBySeat,
+        data:req.query,
+        done:function(data){
+            res.useSend(data);
+        }
+    });
+});
 exports.router = router;
 exports.__path = '/order';

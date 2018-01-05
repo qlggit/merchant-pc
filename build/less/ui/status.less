@@ -1,5 +1,11 @@
 .status-list{
   color:#999;
+  .active{
+    color:@color-blue;
+    .number{
+      border:1px solid @color-blue;
+    }
+  }
   .number{
     text-align: center;
     margin-right:10px;
@@ -8,14 +14,8 @@
     line-height: 28px;
     border-radius: 100%;
     border:1px solid #999;
-    &.active{
-      border:1px solid @color-blue;
-    }
   }
   .item{
 
-  }
-  .active{
-    color:@color-blue;
   }
 }

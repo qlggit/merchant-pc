@@ -259,6 +259,13 @@ module.exports = [
         concatName:'team-person.js',
         destPath:'./build/js/build/'
     },
+    {
+        src:[
+            './build/js/page/wine/list.js',
+        ],
+        concatName:'wine-list.js',
+        destPath:'./build/js/build/'
+    },
 
 
 
@@ -267,6 +274,15 @@ module.exports = [
             './build/js/page/admin/merchant/list.js',
         ],
         concatName:'admin-merchant-list.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/ui/bootstrap-datetimepicker.min.js',
+            './build/js/ui/date.js',
+            './build/js/page/admin/merchant/contract.js',
+        ],
+        concatName:'admin-merchant-contract.js',
         destPath:'./build/js/build/'
     },
     {
@@ -330,6 +346,13 @@ module.exports = [
             './build/js/page/admin/finance/list.js',
         ],
         concatName:'admin-finance-list.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/page/admin/finance/red.js',
+        ],
+        concatName:'admin-finance-red.js',
         destPath:'./build/js/build/'
     },
 ];

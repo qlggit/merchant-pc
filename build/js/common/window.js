@@ -75,11 +75,11 @@
     $(document).click(function(){
         $('.popover').hide();
     });
-    var $loadingWindow;
-    WY.loading = function(sts){
-        $loadingWindow = $loadingWindow || $('.ms-loading-window');
-        $loadingWindow[sts == 0?'hide':'show']();
-    };
+    // var $loadingWindow;
+    // WY.loading = function(sts){
+    //     $loadingWindow = $loadingWindow || $('.ms-loading-window');
+    //     $loadingWindow[sts == 0?'hide':'show']();
+    // };
     var $videoWindow;
     WY.showVideo = function(src , title){
         if(!$videoWindow){

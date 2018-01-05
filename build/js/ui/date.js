@@ -1,11 +1,22 @@
+$.fn.datetimepicker.dates['en'] = {
+    days: ["周日","周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+    daysShort: ["日", "一", "二", "三", "四", "五", "六", "日"],
+    daysMin: ["日", "一", "二", "三", "四", "五", "六", "日"],
+    months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+    monthsShort: ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"],
+    today: "今天",
+    meridiem:['上午','下午'],
+    suffix:$.fn.datetimepicker.dates['en'].suffix,
+    clear:'清除'
+};
 $.fn.rangeTimeSelect = function(options){
     return this.each(function(){
         var $start = $(this).find('.start-time');
         var $end = $(this).find('.end-time');
         $start.datetimepicker({
-            format:options.format || 'yyyy-mm-dd hh:ii:ss',
+            format:options.format || $start.attr('format') || 'yyyy-mm-dd hh:ii:ss',
             autoclose:true,
-            minView:options.minView,
+            minView:options.minView || $start.attr('min-view'),
             startDate:new Date,
             endDate:options.endDate || $end.val(),
             todayBtn:'linked',
@@ -15,9 +26,9 @@ $.fn.rangeTimeSelect = function(options){
             $start.datetimepicker('hide');
         });
         $end.datetimepicker({
-            format:options.format || 'yyyy-mm-dd hh:ii:ss',
+            format:options.format || $start.attr('format') || 'yyyy-mm-dd hh:ii:ss',
             autoclose:true,
-            minView:options.minView,
+            minView:options.minView || $start.attr('min-view'),
             startDate:useCommon.parseDate(options.startTime || $start.val() || new Date),
             todayBtn:'linked',
             todayHighlight:true,

@@ -6,13 +6,11 @@ $(function(){
     $('body').on('change' , '[check-all]',function(e , f){
         var $checkOne = $('[check-one="'+$(this).attr('check-all')+'"]');
         $checkOne.prop('checked',$(this).prop('checked'));
-        if(!e.isTrigger)$checkOne.trigger('change');
     });
     $('body').on('change' , '[check-one]',function(e){
         var checkName = $(this).attr('check-one');
         var $checkAll = $('[check-all="'+checkName+'"]');
         $checkAll.prop('checked',!$('[check-one="'+checkName+'"]:not(:checked)').length);
-        if(!e.isTrigger)$checkAll.trigger('change');
     });
     Dictionary.autoLoad(function(){
         WY.ready('auto-load-dictionary');

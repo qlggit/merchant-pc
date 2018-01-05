@@ -2,7 +2,7 @@
 <% include ../../layouts/header.html%>
 <div class="">
     <div class=" ">
-        <form class="form-horizontal pl-15 merchant-info-form ">
+        <div class="form-horizontal pl-15 merchant-info-form ">
             <%
             seatOrder = seatOrder[0]
             %>
@@ -24,41 +24,46 @@
                     <%}else{%>
                     <span class="mr-10">允许拼桌</span>
                     <%}%>
-                    <button class="btn btn-primary">使用</button>
+                    <%if(seatOrder.dcStatus!==null){%>
+                    <button class="btn btn-primary cost-btn">到场</button>
+                    <%}%>
+                    <%if(seatOrder.dcStatus!=='wait'){%>
+                    <button class="btn btn-primary cost-done-btn">离场</button>
+                    <%}%>
                 </div>
             </div>
             <div class="status-list flex-left pb-40">
-                <div class="item mr-30">
-                    <div class="flex-left">
+                <div class="item mr-30 active">
+                    <div class="flex-center">
                         <div class="number">1</div>
-                        <div>订桌</div>
+                        <div class="">订桌</div>
                     </div>
-                    <div></div>
+                    <div class="pt-20"><%=seatOrder.bookTime%></div>
                 </div>
-                <div class="item mr-30">
-                    <div class="flex-left">
+                <div class="item mr-30 <%=seatOrder.payStatus==='ALREADY_PAY'?'active':''%>">
+                    <div class="flex-center">
                         <div class="number">2</div>
-                        <div>支付</div>
+                        <div>已支付</div>
                     </div>
                     <div></div>
                 </div>
-                <div class="item mr-30">
-                    <div class="flex-left">
+                <div class="item mr-30 <%=seatOrder.dcStatus==='wait'?'active':''%>">
+                    <div class="flex-center">
                         <div class="number">3</div>
-                        <div>使用中</div>
+                        <div>到场</div>
                     </div>
-                    <div></div>
+                    <div><%=seatOrder.arriveTime%></div>
                 </div>
-                <div class="item mr-30">
-                    <div class="flex-left">
+                <div class="item mr-30 <%=seatOrder.dcStatus==='done'?'active':''%>">
+                    <div class="flex-center">
                         <div class="number">3</div>
                         <div>已使用</div>
                     </div>
                     <div></div>
                 </div>
             </div>
-            <fieldset class="">
-                <legend>客户信息</legend>
+            <div class="">
+                <h3>客户信息</h3>
                 <table class="table width-100-100">
                     <tr>
                         <td>用户名</td>
@@ -82,9 +87,9 @@
                     </tr>
                     <%})%>
                 </table>
-            </fieldset>
-            <fieldset class="">
-                <legend>桌位信息/包房信息</legend>
+            </div>
+            <div class="">
+                <h3>桌位信息/包房信息</h3>
                 <table class="table width-100-100">
                     <tr>
                         <td>桌号/房号</td>
@@ -101,9 +106,9 @@
                         <td><%=seatOrder.deductibleAmount/100%></td>
                     </tr>
                 </table>
-            </fieldset>
-            <fieldset>
-                <legend>消费订单信息</legend>
+            </div>
+            <div>
+                <h3>消费订单信息</h3>
                 <table class="table width-100-100">
                     <tr>
                         <td>订单号</td>
@@ -124,9 +129,9 @@
                     </tr>
                     <%})%>
                 </table>
-            </fieldset>
-            <fieldset>
-                <legend>消费品信息</legend>
+            </div>
+            <div>
+                <h3>消费品信息</h3>
                 <table class="table width-100-100">
                     <tr>
                         <td>订单号</td>
@@ -165,8 +170,8 @@
                     </tr>
                     <%})%>
                 </table>
-            </fieldset>
-        </form>
+            </div>
+        </div>
     </div>
 </div>
 <script src="/js/build/order-info.js"></script>

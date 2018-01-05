@@ -83,9 +83,11 @@ Permission.init = function(){
 
 
         //内部使用菜单
-        menu001:'/admin/merchant',
+        menu00101:'/admin/merchant',
+        menu00102:'/admin/merchant/contract',
         menu00201:'/admin/member/list',
         menu00301:'/admin/finance/list',
+        menu00304:'/admin/finance/red',
         menu004:'/admin/version',
         menu00501:'/admin/group',
         menu00502:'/admin/group/lvl',

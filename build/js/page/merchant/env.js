@@ -80,6 +80,7 @@ $(function(){
         WY.showVideo(updateData.filePath);
     });
     function doFileUpload(path){
+        WY.loading(1);
         WY.captureImage(path , function(path){
             $window.find('[name=link]').val(path);
         });

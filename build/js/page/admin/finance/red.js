@@ -10,12 +10,11 @@ $(function(){
     })
     function doSearch(page){
         var sendData = {
-            status:$searchForm.find('[name=status]').val(),
-            starNum:$searchForm.find('[name=starNum]').val(),
+            status:'normal',
             pageNum:page || 1,
             pageSize:10,
         };
-        $.get('/order/rate/data',sendData , function(a){
+        $.get('/admin/finance/red/data', sendData , function(a){
             allData = a.data;
             setPage(page);
         });
@@ -28,12 +27,12 @@ $(function(){
         $.each(showData , function(i , o){
             var $tr = $('<tr>').addClass('data-list');
             $tr.append('<td>'+(i+1)+'</td>');
-            $tr.append('<td>'+o.nickName   +'</td>');
-            $tr.append('<td>'+useCommon.parseDate(o.rowAddTime)    +'</td>');
-            $tr.append('<td><a class="btn btn-sm show-btn" index="'+i+'">查看</a></td>');
+            $tr.append('<td>'+o.amount / 100  +'</td>');
+            $tr.append('<td>'+o.nickname    +'</td>');
+            $tr.append('<td>'+o.countGrab     +'</td>');
+            $tr.append('<td>'+Dictionary.text('redStatus',o.status)   +'</td>');
+            $tr.append('<td>'+o.expireTime    +'</td>');
             $tr.append('<td><div class="btn-group">' +
-                (WY.permissionAuth('')&&o.showMe  === 'y'? ( '<a class="btn btn-sm btn-primary delete-btn" index="'+i+'">隐藏</a>'):'') +
-                // '<a class="btn btn-sm btn-primary delete-btn">删除</a>' +
                 '</div></td>');
             $table.append($tr);
         });
@@ -48,28 +47,40 @@ $(function(){
         });
     }
     var updateData;
-    $table.on('click', '.delete-btn' , function(){
+    $table.on('click', '.audit-btn' , function(){
         updateData = showData[$(this).attr('index')];
+        var type = $(this).attr('status');
         WY.confirm({
-            content:'确认隐藏此评论?',
+            content:'审核当前提现',
+            submitText:'通过',
+            cancelText:'拒绝',
             done:function(){
-                $.post('/order/rate/delete',{
-                    commentId:updateData.commentId
-                } , function(a){
-                    useCommon.toast(a.message);
-                    if(a.code === 0){
-                        doSearch(aotoPage);
+                doAudit({
+                    withdrawId:updateData.withdrawId,
+                    audit:'pass',
+                })
+            },
+            cancel:function(){
+                WY.prompt({
+                    content:'拒绝原因',
+                    done:function(v){
+                        doAudit({
+                            withdrawId:updateData.withdrawId,
+                            audit:'refuse',
+                            replyContent:v,
+                        })
                     }
                 })
             }
-        })
-    });
-    $table.on('click', '.show-btn' , function(){
-        updateData = showData[$(this).attr('index')];
-        WY.alert({
-            title:'评论内容',
-            content:updateData.content,
-        })
+        });
+        function doAudit(data){
+            $.post('/admin/finance/audit',data, function(a){
+                useCommon.toast(a.message);
+                if(a.code === 0){
+                    doSearch(aotoPage);
+                }
+            })
+        }
     });
     WY.ready('auto-load-dictionary',doSearch);
 });

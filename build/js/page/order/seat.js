@@ -33,7 +33,7 @@ $(function(){
             $tr.append('<td>'+(o.payStatus==='ALREADY_PAY'?'已支付':'未支付')+'</td>');
             $tr.append('<td><div class="btn-group">' +
                 '<a class="btn btn-sm btn-primary update-btn" target="_blank" href="/order/seat/info?orderNo='+o.orderNo+'">详情</a>' +
-               WY.AuthHtml(o.dcStatus === 'wait', '<a class="btn btn-sm btn-primary cost-btn" index="'+i+'" >配送</a>') +
+               WY.AuthHtml(o.dcStatus === null, '<a class="btn btn-sm btn-primary cost-btn" index="'+i+'" >配送</a>') +
                 // '<a class="btn btn-sm btn-primary delete-btn">删除</a>' +
                 '</div></td>');
             $table.append($tr);

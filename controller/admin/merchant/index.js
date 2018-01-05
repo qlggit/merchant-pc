@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-router.get('/',useValidate.hasLogin, usePermission.authMenu('menu001'),function(req, res, next) {
+router.get('/',useValidate.hasLogin, usePermission.authMenu('menu00101'),function(req, res, next) {
     res.useRender('admin/merchant/list');
 });
 router.post('/add',useValidate.hasLogin,function(req, res, next) {

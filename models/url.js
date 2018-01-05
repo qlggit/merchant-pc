@@ -99,7 +99,8 @@ module.exports = {
         envEdit:apiUrl + '/mgr/supplier/env/v_1/edit',
         envList:apiUrl + '/mgr/supplier/env/v_1/envlist',
 
-
+        contractAdd:apiUrl+'/mgr/contract/v_1/add',
+        contractList:apiUrl+'/mgr/contract',
     },
     product:{
         list:apiUrl + '/mgr/goods/v_1/list',
@@ -129,6 +130,7 @@ module.exports = {
 
         distributeList:apiUrl + '/mgr/orders/v_1/distributeList',
         distribute:apiUrl + '/mgr/orders/v_1/distribute',
+        distributeProduct:apiUrl + '/mgr/orders/v_1/distributeList2',
 
 
     },
@@ -145,6 +147,8 @@ module.exports = {
         audit:apiUrl + '/mgr/finance/withdraw/v_1/audit',
 
         stream:apiUrl + '/mgr/finance/lszd/v_1/list',
+
+        redPacket:apiUrl + '/mgr/redpacketsRequire',
     },
     city:{
         patent:apiUrl + '/api/area/v_1/list',

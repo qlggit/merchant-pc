@@ -62,6 +62,7 @@ $(function(){
         $window.find('.show-file-content').html('');
         $window.find('.do-audio-content').html('');
         $window.find('.do-audio-content').attr('showImg','').doFileUpload();
+        $window.find('.show-file-content').attr('showImg','').showFileUpload();
         $dataForm[0].reset();
         updateData = null;
     });

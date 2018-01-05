@@ -64,6 +64,19 @@ var Dictionary = {
             fail:'提现失败',
             refuse:'退回',
 		},
+        operaType :{
+            imp:'存',
+            exp:'取',
+		},
+        redStatus:{
+            normal:'发布中',
+            delete:'删除',
+            invited:'用户已被选择/已抢',
+            outtime:'过期',
+            rested:'已付尾款',
+            cancel:'拒付尾款',
+            finished:'完成',
+		},
         bankList:{
 			1:'中国工商银行',
             2:'中国农业银行',

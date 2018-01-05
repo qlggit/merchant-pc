@@ -710,6 +710,12 @@ div::-webkit-scrollbar {
 .status-list {
   color: #999;
 }
+.status-list .active {
+  color: #169bfd;
+}
+.status-list .active .number {
+  border: 1px solid #169bfd;
+}
 .status-list .number {
   text-align: center;
   margin-right: 10px;
@@ -718,12 +724,6 @@ div::-webkit-scrollbar {
   line-height: 28px;
   border-radius: 100%;
   border: 1px solid #999;
-}
-.status-list .number.active {
-  border: 1px solid #169bfd;
-}
-.status-list .active {
-  color: #169bfd;
 }
 .flex-basis-30 {
   flex-basis: 30px;
