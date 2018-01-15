@@ -56,7 +56,7 @@ module.exports = function(req , res , next){
     };
     res.useSend = function(body){
         body.message = body.message || (body.code == 0?'操作成功':'操作失败');
-        res.send(body);
+        res.send(body.clearNull());
     };
     res.useRedirect = function(path){
         res.redirect(path);

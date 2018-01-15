@@ -8,7 +8,7 @@ router.get('/data',useValidate.hasLogin, function(req, res, next) {
         url:useUrl.permissionAdmin.role,
         data:{},
         done:function(a){
-            res.send(a);
+            res.useSend(a);
         }
     })
 });
@@ -19,7 +19,7 @@ router.post('/add',useValidate.hasLogin, function(req, res, next) {
         data:req.body,
         method:'POST',
         done:function(a){
-            res.send(a);
+            res.useSend(a);
         }
     })
 });
@@ -29,7 +29,7 @@ router.post('/update',useValidate.hasLogin, function(req, res, next) {
         data:req.body,
         method:'POST',
         done:function(a){
-            res.send(a);
+            res.useSend(a);
         }
     })
 });
@@ -39,7 +39,7 @@ router.post('/delete',useValidate.hasLogin, function(req, res, next) {
         data:req.body,
         method:'POST',
         done:function(a){
-            res.send(a);
+            res.useSend(a);
         }
     })
 });

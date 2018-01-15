@@ -33,7 +33,7 @@ $(function(){
             $tr.append('<td><a class="btn btn-sm show-btn" index="'+i+'">查看</a></td>');
             $tr.append('<td><div class="btn-group">' +
                 (WY.permissionAuth('')&&o.showMe  === 'y'? ( '<a class="btn btn-sm btn-primary delete-btn" index="'+i+'">隐藏</a>'):'') +
-                // '<a class="btn btn-sm btn-primary delete-btn">删除</a>' +
+                '<a class="btn btn-sm btn-primary delete-btn" index="'+i+'">删除</a>' +
                 '</div></td>');
             $table.append($tr);
         });

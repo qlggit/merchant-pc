@@ -9,10 +9,11 @@ $(function(){
         return false;
     })
     function doSearch(page){
-        $.get('/member/list/data',{
-            pageNum:page || 1,
-            pageSize:10,
-        } , function(a){
+        var searchData = $searchForm.__serializeJSON();
+        searchData.pageNum = page ||1;
+        searchData.pageSize = 10;
+        searchData.moblie = searchData.mobile;
+        $.get('/member/list/data',searchData , function(a){
             allData = a.data;
             setPage(page);
         });
@@ -26,9 +27,10 @@ $(function(){
             $tr.append('<td>'+(i+1)+'</td>');
             $tr.append('<td>'+o.nickname+'</td>');
             $tr.append('<td>'+o.mobile+'</td>');
+            $tr.append('<td>'+o.costAmount+'</td>');
             $tr.append('<td>'+o.cityName+'</td>');
             $tr.append('<td><div class="btn-group">' +
-                '<a class="btn btn-sm btn-primary" index="'+i+'">消费详情</a>' +
+                '<a class="btn btn-sm btn-primary" href="/order/seat?userId='+o.userId+'" target="_blank" index="'+i+'">消费详情</a>' +
                 // '<a class="btn btn-sm btn-primary delete-btn">删除</a>' +
                 '</div></td>');
             $table.append($tr);

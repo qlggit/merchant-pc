@@ -80,7 +80,7 @@ $(function(){
     });
     $window.find('.this-submit-btn').click(function(){
         var data = $dataForm.__serializeJSON();
-        var valid = useValidate.validator({
+        var checkData = {
             accountName :{
                 required:1,
                 message:'请输入开户名'
@@ -97,11 +97,19 @@ $(function(){
                 required:1,
                 message:'请输入银行卡号'
             },
-        },data);
+            sendCode  :{
+                required:1,
+                message:'请输入验证码'
+            },
+        }
+        if(updateData)delete checkData.sendCode;
+        else data.phone = resJson.merchantInfo.supplierPhone;
+        var valid = useValidate.validator(checkData,data);
         if(!valid.valid){
             useCommon.toast(valid.message);
             return false;
         }
+
         if(updateData){
             data.supplierBankId    = updateData.supplierBankId   ;
         }else{

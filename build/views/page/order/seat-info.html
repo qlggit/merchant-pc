@@ -24,11 +24,11 @@
                     <%}else{%>
                     <span class="mr-10">允许拼桌</span>
                     <%}%>
-                    <%if(seatOrder.dcStatus!==null){%>
+                    <%if(seatOrder.dcStatus==='init'){%>
                     <button class="btn btn-primary cost-btn">到场</button>
                     <%}%>
-                    <%if(seatOrder.dcStatus!=='wait'){%>
-                    <button class="btn btn-primary cost-done-btn">离场</button>
+                    <%if(seatOrder.dcStatus==='wait'){%>
+                    <!--<button class="btn btn-primary cost-done-btn">离场</button>-->
                     <%}%>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                     </div>
                     <div></div>
                 </div>
-                <div class="item mr-30 <%=seatOrder.dcStatus==='wait'?'active':''%>">
+                <div class="item mr-30 <%=seatOrder.dcStatus!=='init'?'active':''%>">
                     <div class="flex-center">
                         <div class="number">3</div>
                         <div>到场</div>
@@ -75,7 +75,7 @@
                         <td><%=seatOrder.nickName%></td>
                         <td><%=seatOrder.mobile%></td>
                         <td>订桌</td>
-                        <td><%=order.find(function(a){return a.userId === seatOrder.userId})?'是':'否'%></td>
+                        <td><%=order&&order.find(function(a){return a.userId === seatOrder.userId})?'是':'否'%></td>
                     </tr>
                     <%ping&&ping.filter(function(a){return a.isAgree === 'Y';}).forEach(function(a){
                     %>
@@ -83,7 +83,7 @@
                         <td><%=a.nickName%></td>
                         <td><%=a.mobile%></td>
                         <td>拼桌</td>b
-                        <td><%=order.find(function(b){return a.userId === b.userId})?'是':'否'%></td>
+                        <td><%=order&&order.find(function(b){return a.userId === b.userId})?'是':'否'%></td>
                     </tr>
                     <%})%>
                 </table>
@@ -138,7 +138,7 @@
                         <td>名称</td>
                         <td>数量</td>
                         <td>总价</td>
-                        <td>消费时间</td>
+                        <td>类型</td>
                         <td>状态</td>
                         <td>购买人</td>
                         <td>操作人</td>
@@ -147,10 +147,19 @@
                     </tr>
                     <%
                     var detailLs = [];
-                    console.log(detailLs);
-                    order.forEach(function(a){
+                    order&&order.forEach(function(a){
                         a.detailLs.forEach(function(b){
-                            return b.orderNo = a.orderNo
+                            b.orderNo = a.orderNo;
+                            b.buyName = a.nickName;
+                            b.source='购买';
+                        });
+                        detailLs = detailLs.concat(a.detailLs);
+                    })
+                    give&&give.forEach(function(a){
+                        a.detailLs.forEach(function(b){
+                            b.orderNo = a.orderNo;
+                    b.source='赠送';
+                    b.buyName = a.giveNickName;
                         });
                         detailLs = detailLs.concat(a.detailLs);
                     })
@@ -161,9 +170,9 @@
                         <td><%=a.goodsName%></td>
                         <td><%=a.quantity%></td>
                         <td><%=(a.unitPrice * a.quantity)/100%></td>
-                        <td><%=a.rowAddTime%></td>
-                        <td></td>
-                        <td></td>
+                        <td><%=a.source%></td>
+                        <td><%=(a.status==='send'?'已配送':'未配送')%></td>
+                        <td><%=a.buyName%></td>
                         <td></td>
                         <td></td>
                         <td></td>

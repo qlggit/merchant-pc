@@ -59,14 +59,28 @@ var Dictionary = {
 		},
         withdrawStatus:{
             normal:'审核中',
+            online:'审核中',
             pass:'审核通过',
             success:'提现成功',
             fail:'提现失败',
             refuse:'退回',
 		},
+        withdrawType:{
+            alipay:'支付宝',
+            weixin:'微信'
+		},
         operaType :{
             imp:'存',
             exp:'取',
+		},
+        wineStatus :{
+            auditing:'申请中',
+            pass:'通过',
+            refuse:'拒绝',
+		},
+        payStatus :{
+            ALREADY_PAY:'已支付',
+            NOT_PAY:'未支付',
 		},
         redStatus:{
             normal:'发布中',

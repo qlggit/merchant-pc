@@ -13,13 +13,28 @@ router.get('/list',useValidate.hasLogin, function(req, res, next) {
         }
     });
 });
-router.get('/infoBySeat',useValidate.hasLogin, function(req, res, next) {
-    useRequest.send(req , res , {
-        url:useUrl.order.infoBySeat,
-        data:req.query,
-        done:function(data){
-            res.useSend(data);
-        }
+router.get('/product',useValidate.hasLogin, function(req, res, next) {
+    var all = [];
+    all.push(new Promise(function(rev){
+        useRequest.send(req , res , {
+            url:useUrl.order.infoBySeat,
+            data:req.query,
+            done:function(data){
+                rev(data.data && data.data.list || data.data);
+            }
+        });
+    }));
+    all.push(new Promise(function(rev){
+        useRequest.send(req , res , {
+            url:useUrl.order.giveList,
+            data:req.query,
+            done:function(data){
+                rev(data.data && data.data.list || data.data);
+            }
+        });
+    }));
+    Promise.all(all).then(function(v){
+        res.sendSuccess([].concat(v[0],v[1]));
     });
 });
 exports.router = router;

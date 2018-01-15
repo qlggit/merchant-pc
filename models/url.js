@@ -4,6 +4,10 @@ module.exports = {
     file:{
         upload:h5Api + '/file/upload',
     },
+    sms:{
+        send:apiUrl + '/api/sms/v_1/send',
+        check:apiUrl + '/api/sms/v_1/invalidSms',
+    },
     login:{
         login:h5Api + '/server/admin/login',
         update:h5Api + '/server/admin/login/update',
@@ -63,6 +67,7 @@ module.exports = {
     user:{
         qrcodeAdd:h5Api + '/server/merchant/permission/user/qrcodeAdd',
         info:apiUrl + '/api/user/v_1/infoByuserId',
+        rongToken:apiUrl + '/api/user/v_1/getRongYunToken',
     },
     merchant:{
         login:h5Api + '/server/merchant/login',
@@ -132,6 +137,8 @@ module.exports = {
         distribute:apiUrl + '/mgr/orders/v_1/distribute',
         distributeProduct:apiUrl + '/mgr/orders/v_1/distributeList2',
 
+        giveList:apiUrl + '/api/give/v_1/list',
+
 
     },
     bank:{
@@ -178,11 +185,17 @@ module.exports = {
     },
     member:{
         list:apiUrl + '/mgr/user/v_1/list',
+        members:apiUrl + '/mgr/supplier/v_1/members',
+
+        groupUser:apiUrl + '/api/chat/v_1/groupUser',
+        quitGroup:apiUrl + '/api/chat/v_1/quitGroup',
+        addChatGroup:apiUrl + '/mgr/supplier/v_1/addChatGroup',
+        delChatMember:apiUrl + '/mgr/supplier/v_1/delChatGroupMembers',
     },
     wine:{
-        list:apiUrl + '/api/wine/v_1/accessWineList',
-        audit:apiUrl + '/api/wine/v_1/auditAccessWine',
-        detail:apiUrl + '/api/wine/v_1/wineList',
+        list:apiUrl + '/mgr/wine/v_1/accessWineList',
+        imp:apiUrl + '/mgr/wine/v_1/auditAccessWine',
+        exp:apiUrl + '/mgr/wine/v_1/expWine',
     },
     message:{
         userList:apiUrl + '/mgr/userview',

@@ -1,4 +1,31 @@
 <% title = '同吧群'%>
 <% include ../../layouts/header.html%>
+<script src="//cdn.ronghub.com/RongIMLib-2.3.0.min.js"></script>
+<div class="member-group">
+    <div class="pl-40 pt-10 pb-10 fz-24 color-24 back-white">同吧群</div>
+    <div class="flex-left flex-top">
+        <div class="left">
+            <div class="pl-40 back-242 head flex-left">
+                <img class="border-rad-100" src="<%=resJson.merchantInfo.headFile%>" alt="">
+                <div class="pl-20 fz-30"><%=resJson.merchantInfo.supplierName%></div>
+            </div>
+            <div class="member-content pl-40  flex-between  flex-top back-white">
+                <div class="member-left pr-40">
+                    <div class="fz-24 title pt-10 color-128">群成员（<span class="show-user-number"></span>）</div>
+
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="message-content back-242 text-center">
+
+            </div>
+            <div class="send-content position-relative border-204">
+                <textarea name="" class="width-100-100 height-100-100 send-message pl-40 pt-40" placeholder="输入您的发送内容"></textarea>
+                <div class="position-absolute send-btn back-24 color-white text-center border-rad-5 fz-28 cursor-pointer">发送</div>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="/js/build/member-group.js"></script>
 <% include ../../layouts/footer.html%>

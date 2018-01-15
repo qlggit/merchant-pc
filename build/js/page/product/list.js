@@ -93,7 +93,7 @@ $(function(){
     $table.on('click', '.num-btn' , function(){
         updateData = showData[$(this).attr('index')];
         WY.prompt({
-            content:'输入要变更的库存',
+            content:'输入要增加或减少的库存数',
             done:function(v){
                 if(isNaN(v) || (v-0 !== (v | 0))){
                     useCommon.toast('请输入有效的库存数字');

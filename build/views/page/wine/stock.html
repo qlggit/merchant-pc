@@ -1,0 +1,60 @@
+<% title = '存酒单'%>
+<% include ../../layouts/header.html%>
+<link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css">
+<div class="">
+    <div class=" ">
+        <form class="form-inline search-form pl-15 range-time-select">
+            <div class="form-group">
+                <input type="text" class="form-control start-time" placeholder="开始时间">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control end-time" placeholder="结束时间">
+            </div>
+            <div class="form-group">
+                <select class="form-control" data-dictionary="withdrawStatus" name="status"></select>
+            </div>
+            <button type="submit" class="btn btn-default">查询</button>
+        </form>
+        <div class="mt-15">
+            <table class="table width-100 show-data-table">
+                <tr>
+                    <td>序号</td>
+                    <td>用户</td>
+                    <td>数量</td>
+                    <td>类型</td>
+                    <td>订单</td>
+                    <td>发起时间</td>
+                    <td>过期时间</td>
+                    <td>操作</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal fade wine-info-window" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">酒水列表</h4>
+            </div>
+            <div class="modal-body ">
+                <table class="table width-100">
+                    <tr>
+                        <td>序号</td>
+                        <td>名称</td>
+                        <td>数量</td>
+                        <td>状态</td>
+                        <td>标签</td>
+                        <td>备注</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/build/wine-stock.js"></script>
+<% include ../../layouts/footer.html%>

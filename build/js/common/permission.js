@@ -7,7 +7,7 @@ WY.permissionAuthHtml = function(code , html){
     if(sessionJson.permissionData.permissionCode.indexOf(code) > -1)return html;
     return '';
 };
-WY.AuthHtml = function(code , html){
+WY.authHtml = function(code , html){
     if(code)return html;
     return '';
 };

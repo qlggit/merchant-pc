@@ -4,8 +4,9 @@ router.get('/',useValidate.hasLogin,usePermission.authMenu('menu1002'), function
     res.useRender('member/list');
 });
 router.get('/data',useValidate.hasLogin, function(req, res, next) {
+    req.query.supplierId = req.session.userInfo.company;
     useRequest.send(req  , res , {
-        url:useUrl.member.list,
+        url:useUrl.member.members,
         data:req.query,
         done:function(a){
             res.useSend(a)

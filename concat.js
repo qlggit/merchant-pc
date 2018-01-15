@@ -266,6 +266,20 @@ module.exports = [
         concatName:'wine-list.js',
         destPath:'./build/js/build/'
     },
+    {
+        src:[
+            './build/js/page/wine/history.js',
+        ],
+        concatName:'wine-history.js',
+        destPath:'./build/js/build/'
+    },
+    {
+        src:[
+            './build/js/page/wine/stock.js',
+        ],
+        concatName:'wine-stock.js',
+        destPath:'./build/js/build/'
+    },
 
 
 

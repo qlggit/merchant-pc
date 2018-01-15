@@ -9,10 +9,11 @@ $(function(){
         return false;
     })
     function doSearch(page){
-        $.get('/admin/member/list/data',{
-            pageNum:page || 1,
-            pageSize:10,
-        } , function(a){
+        var searchData = $searchForm.__serializeJSON();
+        searchData.pageNum = page ||1;
+        searchData.pageSize = 10;
+        searchData.moblie = searchData.mobile;
+        $.get('/admin/member/list/data',searchData , function(a){
             allData = a.data;
             setPage(page);
         });

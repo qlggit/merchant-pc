@@ -8,10 +8,10 @@ $(function(){
         return false;
     })
     function doSearch(page){
-        $.get('/order/list',{
-            pageNum:page || 1,
-            pageSize:10,
-        } , function(a){
+        var searchData = $searchForm.__serializeJSON();
+        searchData.pageNum = page ||1;
+        searchData.pageSize = 10;
+        $.get('/order/list',searchData , function(a){
             allData = a.data;
             setPage(page);
         });

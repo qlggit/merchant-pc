@@ -72,8 +72,8 @@ Permission.init = function(){
         menu1103:'/withdraw/bank',
         menu1104:'/withdraw/stream',
 
-        menu1201:'/wine/apply',
-        menu1202:'/wine/list',
+        menu1201:'/wine/list',
+        menu1202:'/wine/stock',
         menu1203:'/wine/history',
 
         menu1301:'/team/person',
@@ -86,7 +86,8 @@ Permission.init = function(){
         menu00101:'/admin/merchant',
         menu00102:'/admin/merchant/contract',
         menu00201:'/admin/member/list',
-        menu00301:'/admin/finance/list',
+        menu00301:'/admin/finance/audit',
+        menu00302:'/admin/finance/list',
         menu00304:'/admin/finance/red',
         menu004:'/admin/version',
         menu00501:'/admin/group',

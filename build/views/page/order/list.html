@@ -5,13 +5,16 @@
     <div class=" ">
         <form class="form-inline search-form pl-15 range-time-select">
             <div class="form-group">
-                <input type="text" class="form-control start-time" placeholder="开始时间">
+                <input type="text" name="startDate" class="form-control start-time" placeholder="开始时间">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control end-time" placeholder="结束时间">
+                <input type="text" name="endDate" class="form-control end-time" placeholder="结束时间">
             </div>
             <div class="form-group">
-                <select class="form-control" data-dictionary="productStatus" name="productType"></select>
+                <input type="text" name="userId" class="form-control" placeholder="用户ID">
+            </div>
+            <div class="form-group">
+                <select class="form-control" data-dictionary="payStatus" name="payStatus"></select>
             </div>
             <button type="submit" class="btn btn-default">查询</button>
             <button type="button" class="btn btn-primary add-permission-btn">添加</button>

@@ -16,7 +16,8 @@ router.get('/data',useValidate.hasLogin, function(req , res , next) {
 router.post('/delete',useValidate.hasLogin, function(req , res , next) {
     useRequest.send(req , res , {
         url:useUrl.order.rateDelete,
-        data:req.query,
+        data:req.body,
+        notBody:1,
         done:function(data){
             res.useSend(data);
         }

@@ -79,10 +79,10 @@ router.post('/operator' , useValidate.wechatLogin, function(req, res, next) {
                     },
                     method:'POST',
                     done:function(a){
-                        res.send(a);
+                        res.useSend(a);
                     }
                 });
-            }else res.send(a);
+            }else res.useSend(a);
         }
     });
 });

@@ -64,12 +64,5 @@ module.exports = function(obj){
                 return data + '';
             }
         };
-        obj.clearNull = function(data){
-            for(var key in data){
-                if(data[key] === '' || data[key] == null){
-                    delete data[key];
-                }
-            }
-        };
     }
 };

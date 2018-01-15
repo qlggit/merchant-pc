@@ -17,8 +17,6 @@ $.fn.rangeTimeSelect = function(options){
             format:options.format || $start.attr('format') || 'yyyy-mm-dd hh:ii:ss',
             autoclose:true,
             minView:options.minView || $start.attr('min-view'),
-            startDate:new Date,
-            endDate:options.endDate || $end.val(),
             todayBtn:'linked',
             todayHighlight:true,
         }).on('changeDate',function(e){
@@ -29,7 +27,6 @@ $.fn.rangeTimeSelect = function(options){
             format:options.format || $start.attr('format') || 'yyyy-mm-dd hh:ii:ss',
             autoclose:true,
             minView:options.minView || $start.attr('min-view'),
-            startDate:useCommon.parseDate(options.startTime || $start.val() || new Date),
             todayBtn:'linked',
             todayHighlight:true,
         }).on('changeDate',function(e){

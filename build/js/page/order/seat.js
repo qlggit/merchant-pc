@@ -8,10 +8,10 @@ $(function(){
         return false;
     })
     function doSearch(page){
-        $.get('/order/seat/list',{
-            pageNum:page || 1,
-            pageSize:10,
-        } , function(a){
+        var searchData = $searchForm.__serializeJSON();
+        searchData.pageNum = page ||1;
+        searchData.pageSize = 10;
+        $.get('/order/seat/list',searchData, function(a){
             allData = a.data;
             setPage(page);
         });
@@ -30,10 +30,10 @@ $(function(){
             $tr.append('<td>'+(o.deductibleAmount&&o.deductibleAmount.turnMoney())+'</td>');
             $tr.append('<td>'+o.rowAddTime+'</td>');
             $tr.append('<td>'+useCommon.parseDate(o.bookTime  , 'Y-m-d')+'</td>');
-            $tr.append('<td>'+(o.payStatus==='ALREADY_PAY'?'已支付':'未支付')+'</td>');
+            $tr.append('<td>'+Dictionary.text('payStatus',o.payStatus)+'</td>');
             $tr.append('<td><div class="btn-group">' +
                 '<a class="btn btn-sm btn-primary update-btn" target="_blank" href="/order/seat/info?orderNo='+o.orderNo+'">详情</a>' +
-               WY.AuthHtml(o.dcStatus === null, '<a class="btn btn-sm btn-primary cost-btn" index="'+i+'" >配送</a>') +
+               WY.authHtml(o.dcStatus==='init' , '<a class="btn btn-sm btn-primary cost-btn" index="'+i+'" >配送</a>') +
                 // '<a class="btn btn-sm btn-primary delete-btn">删除</a>' +
                 '</div></td>');
             $table.append($tr);

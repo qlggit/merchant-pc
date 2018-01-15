@@ -28,7 +28,7 @@ $(function(){
             $tr.append('<td>'+(o.lowCostAmount/100 || 0).toFixed(2)+'</td>');
             $tr.append('<td>'+o.nickName+'</td>');
             $tr.append('<td>'+o.mobile+'</td>');
-            $tr.append('<td>'+useCommon.parseDate(o.rowAddTime)+'</td>');
+            $tr.append('<td>'+useCommon.parseDate(o.arrivedTime)+'</td>');
             $tr.append('<td>'+useCommon.parseDate(o.bookTime)+'</td>');
             $tr.append('<td>'+o.seatName+'</td>');
             $tr.append('<td><div class="btn-group">' +
@@ -53,19 +53,21 @@ $(function(){
         updateData = showData[$(this).attr('index')];
         var $tr = $(this).closest('tr');
         if($(this).hasClass('is-open')){
-            $(this).text('收缩');
+            $(this).text('展开');
             $(this).siblings('.distribute-btn').hide();
-            $(this).removeClass('.is-open');
+            $(this).removeClass('is-open');
             $tr.next('.tr-item').hide();
         }else{
-            $(this).text('展开');
+            $(this).text('收缩');
             $(this).addClass('is-open');
             $(this).siblings('.distribute-btn').show();
             if($tr.next('.tr-item').length){
                 $tr.next('.tr-item').show();
             }else{
-                $.get('/order/infoBySeat',{
+                $.get('/order/product',{
                     seatOrderNo:updateData.orderNo,
+                    pageNum:1,
+                    pageSize:40,
                 },function(a){
                     makeNewTr(a.data , $tr);
                 })
@@ -100,10 +102,10 @@ $(function(){
         var $table = $window.find('.table');
         goodsIds = $tr.find('[code]:checked').map(function(){
             var $tr = $(this).closest('tr');
-            $table.append('<tr>' +
+            $table.append('<tr class="data-list">' +
                 '<td>'+$tr.find('.distribute-name').html()+'</td>' +
                 '<td>'+$tr.find('.distribute-quantity').html()+'</td>' +
-                '</tr>')
+                '</tr>');
             return $(this).attr('code');
         }).toArray().join();
         if(!goodsIds){
@@ -127,14 +129,14 @@ $(function(){
         var detailLs = [];
         data.forEach(function(a){
             a.detailLs.forEach(function(b){
-                if(!b.status)detailLs.push(b);
+                if(b.status ==='nosent' || !b.status)detailLs.push(b);
             });
         });
         detailLs.forEach(function(a){
             $table.append('<tr class="data-list">' +
                 '<td class="distribute-name">'+a.goodsName+'</td>' +
                 '<td class="distribute-quantity">'+a.quantity+'</td>' +
-                '<td><input type="checkbox" code="'+a.goodsId+'" check-one="check-'+data[0].seatOrderNo+'"></td>' +
+                '<td><input type="checkbox" code="'+a.orderGoodsId+'" check-one="check-'+data[0].seatOrderNo+'"></td>' +
                 '</tr>')
         })
     }
@@ -147,9 +149,9 @@ $(function(){
             return false;
         }
         $.post('/distribution/order/do',{
-            orderNo:updateData.orderNo,
+            seatOrderNo:updateData.orderNo,
             staffId:staffId,
-            goodsIds:goodsIds
+            dataIds:goodsIds
         },function(a){
            useCommon.toast(a.message);
             if(a.code === 0){

@@ -4,7 +4,7 @@ router.get('/',useValidate.hasLogin, usePermission.authMenu('menu0503'),function
     res.useRender('message/order');
 });
 router.get('/data',useValidate.hasLogin, function(req, res, next) {
-    res.send({});
+    res.useSend({});
 });
 exports.router = router;
 exports.__path = '/message/order';

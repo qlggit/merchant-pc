@@ -28,11 +28,11 @@ $(function(){
         $table.find('.data-list').remove();
         $.each(showData , function(i , o){
             var $tr = $('<tr>').addClass('data-list');
-            $tr.append('<td>'+(i+1)+'</td>');
-            $tr.append('<td>'+o.name +'</td>');
-            $tr.append('<td>'+o.code  +'</td>');
-            $tr.append('<td>'+o.orgPerson   +'</td>');
-            $tr.append('<td>'+Dictionary.text('showStatus',o.status)+'</td>');
+            $tr.append('<td>' + ( i + 1 ) + '</td>');
+            $tr.append('<td>' + o.name + '</td>');
+            $tr.append('<td>' + o.code  + '</td>');
+            $tr.append('<td>' + ( o.parentId || '' ) + '</td>');
+            $tr.append('<td>' + Dictionary.text('showStatus' , o.status ) + '</td>');
             $tr.append('<td><div class="btn-group">' +
                 // (WY.permissionAuthHtml('' , '<a class="btn btn-sm btn-primary update-btn" index="'+i+'">修改</a>')) +
                 // '<a class="btn btn-sm btn-primary delete-btn">删除</a>' +
@@ -94,7 +94,6 @@ $(function(){
             data.dutyId  = updateData.dutyId ;
         }else{
         }
-        data.unitPrice *= 100;
         $.post('/team/org/' + (updateData?'update':'add') , data , function(a){
             if(a.code ===0){
                 $window.modal('hide');

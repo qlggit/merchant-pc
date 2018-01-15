@@ -6,7 +6,7 @@ router.get('/get',useValidate.hasLogin, function(req, res, next) {
     useRequest.send(req , res , {
         url:req.query.url,
         done:function(d){
-            res.send(d);
+            res.useSend(d);
         }
     })
 });

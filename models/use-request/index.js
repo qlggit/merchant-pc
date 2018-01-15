@@ -1,12 +1,13 @@
 var request =require('request');
-var md5 = require('md5');
 module.exports = {
     send:function(req, res , options ){
         var sendData = useCommon.extend({} , options.data);
         var method = options.method || 'GET';
         var headers = options.headers || {};
-        if(sendData)sendData.remoteAddress = req.remoteAddress;
-        useCommon.clearNull(sendData);
+        if(sendData){
+            sendData.remoteAddress = req.remoteAddress;
+            sendData = sendData.clearEmpty();
+        }
         var __ = {
             url:options.url,
             method:method.toUpperCase(),

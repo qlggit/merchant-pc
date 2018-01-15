@@ -11,13 +11,15 @@ $(function(){
         $.get('/wine/list/data',{
             pageNum:page || 1,
             pageSize:10,
+            status:'auditing'
         } , function(a){
             allData = a.data;
             setPage(page);
         });
     }
-    var $page;
+    var $page,autoPage;
     function setPage(page){
+        autoPage = page;
         showData = allData.list;
         $table.find('.data-list').remove();
         $.each(showData , function(i , o){
@@ -28,10 +30,9 @@ $(function(){
             $tr.append('<td>'+Dictionary.text('operaType',o.operaType )+'</td>');
             $tr.append('<td>'+o.orderNo  +'</td>');
             $tr.append('<td>'+o.applyTime   +'</td>');
-            $tr.append('<td>'+o.expireTime    +'</td>');
             $tr.append('<td><div class="btn-group">' +
                 //'<a class="btn btn-sm btn-primary update-btn" index="'+i+'">修改</a>' +
-                // '<a class="btn btn-sm btn-primary delete-btn">删除</a>' +
+                WY.authHtml(1,'<a class="btn btn-sm btn-primary wine-btn"  index="'+i+'">审核</a>') +
                 '</div></td>');
             $table.append($tr);
         });
@@ -46,4 +47,103 @@ $(function(){
         });
     }
     WY.ready('auto-load-dictionary',doSearch);
+    var $window = $('.wine-info-window');
+    var updateData;
+    $table.on('click','.wine-btn',function(){
+        var wineList = (updateData = showData[$(this).attr('index')]).wineLs;
+        $window.find('.data-list').remove();
+        wineList.forEach(function(a , i){
+           $window.find('.table').append('<tr class="data-list">' +
+               '<td>'+(i+1)+'</td>' +
+               '<td>'+a.goodsName+'</td>' +
+               '<td>'+a.accessQuantity+'</td>' +
+               WY.authHtml(updateData.operaType === 'imp', '<td><input type="checkbox" class="wine-status-input "></td>') +
+               '<td><input type="text" '+(updateData.operaType === 'imp'?'':'readonly')+' class="batch-input width-99"></td>'+
+               '<td><input type="text" class="dic-input width-99"></td>' +
+               '</tr>')
+        });
+        $window.find('.imp-data-list')[updateData.operaType==='imp'?'show':'hide']();
+        $window.modal();
+    });
+    $window.on('click','.this-submit-btn',function(){
+        if(updateData.operaType==='imp')doImp('pass');
+        else doExp('pass');
+    });
+    $window.on('click','.this-cancel-btn',function(){
+        if(updateData.operaType==='imp')doImp('refuse');
+        else doExp('refuse');
+    });
+    function doImp(type){
+        var accessDay = $window.find('[name=accessDay]').val();
+        var sendData = {
+            accessDay:accessDay,
+            accessId:updateData.accessId,
+            audit:type,
+        };
+        if(type==='pass'){
+            if(!accessDay){
+                useCommon.toast('请填写存酒天数');
+                return false;
+            }
+            var oldWineList = updateData.wineLs;
+            var wineList = [],message;
+            $window.find('.wine-status-input').each(function(i , a){
+                var $tr = $(this).closest('tr');
+                var data = {
+                    wineStatus:$(this).prop('checked')?'open':'noopen',
+                    dic:$tr.find('.dic-input').val(),
+                    batchNo:$tr.find('.batch-input').val(),
+                    accessQuantity:oldWineList[i].accessQuantity,
+                    accessWineId :oldWineList[i].accessWineId ,
+                    goodsId :oldWineList[i].goodsId  ,
+                };
+                if(data.wineStatus === 'open'){
+                    if(!data.batchNo){
+                        message = '已开的酒需要添加标签!';
+                        return false;
+                    }
+                }
+                wineList.push(data);
+            });
+            if(message){
+                useCommon.toast(message);
+                return false;
+            }
+            sendData.wineList = wineList;
+        }
+        doSend('imp',sendData)
+    }
+    function doExp(type){
+        var sendData = {
+            accessId:updateData.accessId,
+            seatId :updateData.seatId ,
+            audit:type,
+        };
+        if(type==='pass'){
+            var oldWineList = updateData.wineLs;
+            var wineList = [];
+            $window.find('.dic-input').each(function(i , a){
+                var $tr = $(this).closest('tr');
+                var data = {
+                    dic:$tr.find('.dic-input').val(),
+                    accessQuantity:oldWineList[i].accessQuantity,
+                    wineStatus:oldWineList[i].wineStatus,
+                    accessWineId :oldWineList[i].accessWineId ,
+                    goodsId :oldWineList[i].goodsId  ,
+                };
+                wineList.push(data);
+            });
+            sendData.wineList = wineList;
+        }
+        doSend('exp',sendData)
+    }
+    function doSend(type , data){
+        $.post('/wine/'+type , data,function(a){
+            useCommon.toast(a.message);
+            if(a.code  === 0){
+                $window.modal('hide');
+                doSearch(autoPage);
+            }
+        })
+    }
 });
