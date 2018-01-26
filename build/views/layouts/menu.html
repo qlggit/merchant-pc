@@ -1,6 +1,6 @@
 <div class="page-left height-100-100 back-black-1 ">
     <div class="pt-20 pb-50 overflow-scroll-y height-100-100">
-        <p class="text-center"><img  class="menu-head" src="<%=sessionJson.merchantUserInfo.headImg%>" width="60"></p>
+        <p class="text-center"><img  class="menu-head" src="<%=sessionJson.merchantUserInfo && sessionJson.merchantUserInfo.headImg%>" width="60"></p>
         <h5 class="text-center color-white"><%=sessionJson.userInfo.username%></h5>
         <div class="mt-25 mb-20">
             <div href="/" class="menu-title <%=!__menuCode?'active':''%> border-rad-10 cursor-pointer">

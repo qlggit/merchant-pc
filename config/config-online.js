@@ -3,6 +3,7 @@ module.exports = {
     h5Api:'http://h5.yukew.com',
     seatUrl:'http://wx.yukew.com',
     hostname:'ws.yukew.com',
+    apiUrl:'http://172.19.56.132:4200',
     qrcodeApi:'http://sh.yukew.com',
     wechatLoginUrl:'http://h5.yukew.com/wechat/entrance/wxsh',
     wechatJssdkUrl:'http://h5.yukew.com/wechat/jssdk/wxsh',
