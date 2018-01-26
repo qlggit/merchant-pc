@@ -11,6 +11,7 @@ $(function(){
         $.get('/wine/list/data',{
             pageNum:page || 1,
             pageSize:10,
+            type:'imp',
             status:'auditing'
         } , function(a){
             allData = a.data;
@@ -28,11 +29,11 @@ $(function(){
             $tr.append('<td>'+o.nickName +'</td>');
             $tr.append('<td>'+o.total  +'</td>');
             $tr.append('<td>'+Dictionary.text('operaType',o.operaType )+'</td>');
-            $tr.append('<td>'+o.orderNo  +'</td>');
+            $tr.append('<td>'+o.batchNo   +'</td>');
             $tr.append('<td>'+o.applyTime   +'</td>');
             $tr.append('<td><div class="btn-group">' +
                 //'<a class="btn btn-sm btn-primary update-btn" index="'+i+'">修改</a>' +
-                WY.authHtml(1,'<a class="btn btn-sm btn-primary wine-btn"  index="'+i+'">审核</a>') +
+                WY.authHtml(o.operaType === 'imp'&&o.status === 'auditing','<a class="btn btn-sm btn-primary wine-btn"  index="'+i+'">审核</a>') +
                 '</div></td>');
             $table.append($tr);
         });
@@ -92,13 +93,13 @@ $(function(){
                 var data = {
                     wineStatus:$(this).prop('checked')?'open':'noopen',
                     dic:$tr.find('.dic-input').val(),
-                    batchNo:$tr.find('.batch-input').val(),
+                    serialNo:$tr.find('.batch-input').val(),
                     accessQuantity:oldWineList[i].accessQuantity,
                     accessWineId :oldWineList[i].accessWineId ,
                     goodsId :oldWineList[i].goodsId  ,
                 };
                 if(data.wineStatus === 'open'){
-                    if(!data.batchNo){
+                    if(!data.serialNo){
                         message = '已开的酒需要添加标签!';
                         return false;
                     }

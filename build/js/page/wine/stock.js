@@ -27,7 +27,7 @@ $(function(){
             $tr.append('<td>'+o.nickName +'</td>');
             $tr.append('<td>'+o.total  +'</td>');
             $tr.append('<td>'+Dictionary.text('operaType',o.operaType )+'</td>');
-            $tr.append('<td>'+o.orderNo  +'</td>');
+            $tr.append('<td>'+o.batchNo   +'</td>');
             $tr.append('<td>'+o.applyTime   +'</td>');
             $tr.append('<td>'+o.expireTime    +'</td>');
             $tr.append('<td><div class="btn-group">' +
@@ -56,8 +56,8 @@ $(function(){
                '<td>'+(i+1)+'</td>' +
                '<td>'+a.goodsName+'</td>' +
                '<td>'+a.accessQuantity+'</td>' +
-               '<td>'+(a.wineStatus==='open'?'已开':'未开')+'</td>' +
-               '<td>'+a.batchNo+'</td>' +
+               '<td>'+(a.wineStatus === 'open' ? '已开' : '未开')+'</td>' +
+               '<td>'+a.serialNo+'</td>' +
                '<td>'+a.dic+'</td>' +
                '</tr>')
         });

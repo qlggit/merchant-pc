@@ -1,9 +1,11 @@
 //admin 1234yqs_admin
 module.exports = {
-    h5Api:'http://47.100.20.78:3002',
-    seatUrl:'http://47.100.20.78:3001',
-    wechatLoginUrl:'http://47.100.20.78:3002/wechat/entrance/test?port=3003&host=47.100.20.78',
-    wechatJssdkUrl:'http://47.100.20.78:3002/wechat/jssdk/test',
+    h5Api:'http://h5.yukew.com',
+    seatUrl:'http://wx.yukew.com',
+    hostname:'ws.yukew.com',
+    qrcodeApi:'http://sh.yukew.com',
+    wechatLoginUrl:'http://h5.yukew.com/wechat/entrance/wxsh',
+    wechatJssdkUrl:'http://h5.yukew.com/wechat/jssdk/wxsh',
     "log4js":{
         "customBaseDir" :"../logs/merchant-pc/",
         "customDefaultAtt" :{

@@ -12,6 +12,7 @@ $(function(){
             pageNum:page || 1,
             pageSize:10,
             dcStatus:'wait',
+            isCost:'y',
         } , function(a){
             allData = a.data;
             setPage(page);
@@ -128,7 +129,7 @@ $(function(){
         $table.append('<tr><td>商品名称</td><td>数量</td><td>选择<input check-all="check-'+data[0].seatOrderNo+'" type="checkbox"></td></tr>');
         var detailLs = [];
         data.forEach(function(a){
-            a.detailLs.forEach(function(b){
+            if(a)a.detailLs.forEach(function(b){
                 if(b.status ==='nosent' || !b.status)detailLs.push(b);
             });
         });

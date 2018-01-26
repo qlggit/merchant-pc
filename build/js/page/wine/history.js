@@ -6,7 +6,7 @@ $(function(){
     $searchForm.submit(function(){
         doSearch(1);
         return false;
-    })
+    });
     function doSearch(page){
         $.get('/wine/list/data',{
             pageNum:page || 1,
@@ -27,9 +27,10 @@ $(function(){
             $tr.append('<td>'+o.nickName +'</td>');
             $tr.append('<td>'+o.total  +'</td>');
             $tr.append('<td>'+Dictionary.text('operaType',o.operaType )+'</td>');
-            $tr.append('<td>'+o.orderNo  +'</td>');
+            $tr.append('<td>'+o.batchNo   +'</td>');
             $tr.append('<td>'+o.applyTime   +'</td>');
             $tr.append('<td>'+o.expireTime    +'</td>');
+            $tr.append('<td>'+Dictionary.text('wineStatus',o.status )+'</td>');
             $tr.append('<td><div class="btn-group">' +
                 //'<a class="btn btn-sm btn-primary update-btn" index="'+i+'">修改</a>' +
                 '<a class="btn btn-sm btn-primary wine-btn"  index="'+i+'">酒水</a>' +
@@ -58,7 +59,7 @@ $(function(){
                '<td>'+a.goodsName+'</td>' +
                '<td>'+a.accessQuantity+'</td>' +
               WY.authHtml(updateData.operaType === 'imp', '<td>'+(a.wineStatus==='open'?'已开':"未开")+'</td>' +
-                  '<td>'+a.batchNo+'</td>') +
+                  '<td>'+a.serialNo+'</td>') +
                '<td>'+a.dic+'</td>' +
                '</tr>')
         });

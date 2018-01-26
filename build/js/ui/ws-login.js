@@ -10,7 +10,7 @@ wsLogin.prototype = {
     },
     ws:function(){
         var options = this.options;
-        var wsUrl = 'ws://' + (resJson.hostname) + ':3004';
+        var wsUrl = 'ws://' + (resJson.hostname);
         var socket=new WebSocket(wsUrl);
         socket.onopen = function(){
             options.onopen && options.onopen(socket);

@@ -25,7 +25,6 @@
     "multer": "^1.1.0",
     "request": "^2.72.0",
     "uuid": "^2.0.2",
-    "vue-cli": "^2.9.2",
     "ws": "^2.2.0"
   },
   "devDependencies": {

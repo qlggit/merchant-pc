@@ -54,12 +54,26 @@ router.get('/info',useValidate.hasLogin, function(req, res, next) {
             }
         });
     }));
+    all.push(new Promise(function(rev , rej ){
+        useRequest.send(req , res , {
+            url:useUrl.wine.list,
+            data:{
+                seatOrderNo:req.query.orderNo,
+                pageNum:1,
+                pageSize:50,
+            },
+            done:function(data){
+                rev(data.data && data.data.list || data.data);
+            }
+        });
+    }));
     Promise.all(all).then(function(a){
         res.useRender('order/seat-info',{
             seatOrder:a[0],
             order:a[1],
             ping:a[2],
             give:a[3],
+            wine:a[4],
         });
     });
 });

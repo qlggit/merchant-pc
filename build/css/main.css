@@ -335,6 +335,9 @@ div::-webkit-scrollbar {
 .pt-40 {
   padding-top: .4rem;
 }
+.pt-60 {
+  padding-top: .6rem;
+}
 .pt-120 {
   padding-top: 1.2rem;
 }
@@ -457,7 +460,7 @@ div::-webkit-scrollbar {
   float: right;
 }
 .border-rad-5 {
-  border-radius: 5px;
+  border-radius: .05rem;
 }
 .border-rad-10 {
   border-radius: .1rem;
@@ -470,6 +473,9 @@ div::-webkit-scrollbar {
 }
 .border-104 {
   border: 1px solid #686868;
+}
+.border-24 {
+  border: 1px solid #181818;
 }
 .border-204 {
   border: 1px solid #cccccc;
@@ -796,7 +802,7 @@ div::-webkit-scrollbar {
   height: 1.56rem;
   border-bottom: 1px solid #cccccc;
 }
-.member-group .left img {
+.member-group .left .left-img {
   width: .8rem;
   height: .8rem;
 }
@@ -868,4 +874,12 @@ div::-webkit-scrollbar {
   height: .6rem;
   width: 1.4rem;
   line-height: .6rem;
+}
+.member-group .left-main {
+  height: 17.9rem;
+}
+.member-group .left-main .btn-lx {
+  position: absolute;
+  left: 5px;
+  top: 25px;
 }

@@ -31,12 +31,15 @@ $(function(){
             $tr.append('<td>'+o.nickname +'</td>');
             $tr.append('<td>'+o.dutyName  +'</td>');
             $tr.append('<td>'+o.mobile  +'</td>');
+            // $tr.append('<td>'+(o.defaultAmount/100||0)  +'</td>');
+            // $tr.append('<td>'+(o.defaultAmount/100||0)  +'</td>');
             $tr.append('<td>'+Dictionary.text('gender',o.gender)   +'</td>');
             $tr.append('<td><img src="'+o.headImg+'" class="ico-40" alt=""></td>');
             $tr.append('<td><div class="btn-group">' +
                 (WY.permissionAuthHtml('' , '<a class="btn btn-sm btn-primary task-btn" index="'+i+'">业绩</a>')) +
                 (WY.permissionAuthHtml('' , '<a class="btn btn-sm btn-primary duty-btn" index="'+i+'">职位</a>')) +
                 (WY.permissionAuthHtml('' , '<a class="btn btn-sm btn-primary amount-btn" index="'+i+'">额度</a>')) +
+                // (WY.permissionAuthHtml('' , '<a class="btn btn-sm btn-primary" target="_blank" href="/member/list?spreadUserId='+o.userId+'">客户</a>')) +
                 // '<a class="btn btn-sm btn-primary delete-btn">删除</a>' +
                 '</div></td>');
             $table.append($tr);

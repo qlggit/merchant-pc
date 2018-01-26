@@ -2,11 +2,12 @@ var express = require('express');
 var router = express.Router();
 router.get('/login/:loginId',useValidate.wechatLogin, function(req, res, next) {
     res.render('qrcode/login',{
-        hostname:useConfig.get('hostname'),
         __CSRF:req.session.__CSRF,
         loginId:req.params.loginId,
         uid:req.session.unionid,
-        NODE_ENV:process.env.NODE_ENV || ''
+        hostname:useConfig.get('hostname'),
+        NODE_ENV:process.env.NODE_ENV,
+        qrcodeApi:useConfig.get('qrcodeApi'),
     });
 });
 router.get('/operator/:_id/:userId' , useValidate.wechatLogin, function(req, res, next) {

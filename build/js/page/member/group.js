@@ -16,18 +16,46 @@ $(function(){
     var $sendMessage = $('.send-message'),$messageContent = $('.message-content');
     var $sendBtn = $('.send-btn');
     var $memberContent = $('.member-left');
+    var allMember = [];
     function putOneMember(data){
-        $memberContent.append('<div class="member-list">' +
+        if(allMember.find(function(a){return a.userId === data.userId}))return false;
+        allMember.push(data);
+        $memberContent[WY.isOwner(data.userId)?'prepend':'append']('<div class="member-list position-relative">' +
+            getExtra(data,data.userId) +
             '                        <div class="member-item flex-left">' +
-            '                            <img src="'+data.headImg +'" class="border-rad-100" alt="">' +
+            '                            <img src="'+data.headImg +'" class="border-rad-100 left-img" alt="">' +
             '                            <div class="pl-20">' +
-            '                                <div class="fz-32 color-24">'+data.nickName +'</div>' +
+            '                                <div class="fz-32 color-24 write-ellipsis" title="'+data.nickName+'">'+data.nickName +'</div>' +
             '                                <div class="fz-24 color-128 pt-10"></div>' +
             '                            </div>' +
             '                        </div>' +
             '                    </div>');
     }
     var pageNum=1,pageSize=100;
+    $('.member-group').on('click' , '.del-user-btn' , function(){
+        delMember($(this).attr('code'));
+    });
+    function delMember(delUserId ){
+        WY.confirm({
+            content:'确认删除此人?',
+            done:function(){
+                $.post('/member/group/delMember' , {
+                    delUserId:delUserId,
+                    chatGroupId:chatGroupId
+                },function(a){
+
+                    if(a.code === 0){
+                        resetSearch();
+                    }else useCommon.toast(a.message);
+                })
+            }
+        })
+    }
+    function resetSearch(){
+        allMember = [];
+        $memberContent.find('.member-list').remove();
+        searchUser();
+    }
     function searchUser(){
         $.get('/member/group/user',{
             pageNum:pageNum,
@@ -68,7 +96,9 @@ $(function(){
         }
     }
     function getExtra(data,userId){
-        return WY.isOwner(userId)?data.extra:'<div class="btn-lx border-24 fz-32">删除</div>';
+        return WY.isOwner(userId)?
+            ('<div class="btn-lx back-24 color-white border-24 fz-24 text-center border-rad-5" >'+(data.extra||'我')+'</div>')
+    :('<div class="btn-lx color-24 border-24 fz-24 cursor-pointer del-user-btn text-center border-rad-5" code="'+userId+'">删除</div>');
     }
     function rightMsg(data , userId){
         addDate();
@@ -87,13 +117,17 @@ $(function(){
         resetScrollTop();
     }
     function leftMsg(data){
+        console.log(data);
         addDate();
         var content = data.content || data;
         var senderUserId = data.senderUserId;
+        content.content = data.messageType === 'TextMessage' ?content.content: '暂不支持此类消息';
+        var userData = allMember.find(function(a){return a.userId === senderUserId});
+        console.log(userData);
         var $div = $('<div class="message left flex-left flex-top ">' +
             '                    <div class="pt-10">' +
-            '                        <img class="mr-30 head-img border-rad-100" src="'+resJson.merchantInfo.headFile+'" alt="">' +
-            '                        <div class="color-128 fz-24 pt-10">'+getExtra(content,userId)+'</div>' +
+            '                        <img class="mr-30 head-img border-rad-100" src="'+(userData&&userData.headImg)+'" alt="">' +
+            '                        <div class="color-128 fz-24 pt-10">'+getExtra(content,senderUserId)+'</div>' +
             '                    </div>' +
             '                    <div class="flex-center ">' +
             '                        <img src="/images/ico/san-left.png" class="ico-30" alt="">' +
@@ -130,10 +164,9 @@ $(function(){
             }});
         RongIMClient.setOnReceiveMessageListener({
             onReceived: function (message) {
-                console.log(message);
                 switch(message.messageType){
                     case RongIMClient.MessageType.TextMessage:
-                        leftMsg(message);
+
                         // message.content.content => 消息内容
                         break;
                     case RongIMClient.MessageType.VoiceMessage:
@@ -178,6 +211,7 @@ $(function(){
                     default:
                     // do something...
                 }
+                leftMsg(message);
             }
         });
         RongIMClient.connect(token, {

@@ -33,7 +33,7 @@ $(function(){
             $tr.append('<td>'+Dictionary.text('payStatus',o.payStatus)+'</td>');
             $tr.append('<td><div class="btn-group">' +
                 '<a class="btn btn-sm btn-primary update-btn" target="_blank" href="/order/seat/info?orderNo='+o.orderNo+'">详情</a>' +
-               WY.authHtml(o.dcStatus==='init' , '<a class="btn btn-sm btn-primary cost-btn" index="'+i+'" >配送</a>') +
+               WY.authHtml(o.isCost!=='y'&&o.payStatus==='ALREADY_PAY'&&o.status === 'end' , '<a class="btn btn-sm btn-primary cost-btn" index="'+i+'" >到场</a>') +
                 // '<a class="btn btn-sm btn-primary delete-btn">删除</a>' +
                 '</div></td>');
             $table.append($tr);

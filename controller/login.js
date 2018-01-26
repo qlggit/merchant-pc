@@ -3,7 +3,8 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     res.render('login',{
         hostname:useConfig.get('hostname'),
-        NODE_ENV:process.env.NODE_ENV
+        NODE_ENV:process.env.NODE_ENV,
+        qrcodeApi:useConfig.get('qrcodeApi'),
     });
 });
 router.post('/qrcode', function(req, res, next) {

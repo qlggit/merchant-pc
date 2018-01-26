@@ -24,7 +24,7 @@
                     <%}else{%>
                     <span class="mr-10">允许拼桌</span>
                     <%}%>
-                    <%if(seatOrder.dcStatus==='init'){%>
+                    <%if(seatOrder.isCost!=='y' && seatOrder.payStatus!=='ALREADY_PAY' && seatOrder.status!=='end'){%>
                     <button class="btn btn-primary cost-btn">到场</button>
                     <%}%>
                     <%if(seatOrder.dcStatus==='wait'){%>
@@ -47,7 +47,7 @@
                     </div>
                     <div></div>
                 </div>
-                <div class="item mr-30 <%=seatOrder.dcStatus!=='init'?'active':''%>">
+                <div class="item mr-30 <%=seatOrder.isCost!=='y'?'active':''%>">
                     <div class="flex-center">
                         <div class="number">3</div>
                         <div>到场</div>
@@ -158,8 +158,16 @@
                     give&&give.forEach(function(a){
                         a.detailLs.forEach(function(b){
                             b.orderNo = a.orderNo;
-                    b.source='赠送';
-                    b.buyName = a.giveNickName;
+                            b.source='赠送';
+                            b.buyName = a.giveNickName;
+                        });
+                        detailLs = detailLs.concat(a.detailLs);
+                    })
+                    wine&&wine.forEach(function(a){
+                        a.detailLs.forEach(function(b){
+                            b.orderNo = a.orderNo;
+                            b.source='赠送';
+                            b.buyName = a.giveNickName;
                         });
                         detailLs = detailLs.concat(a.detailLs);
                     })

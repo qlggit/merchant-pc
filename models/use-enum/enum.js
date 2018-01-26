@@ -21,6 +21,14 @@ module.exports = {
             O5:5,
             O6:6,
             O7:7,
-        }
+        },
+        withdrawStatus:{
+            normal:'审核中',
+            online:'审核中',
+            pass:'审核通过',
+            success:'提现成功',
+            fail:'提现失败',
+            refuse:'退回',
+        },
     }
 };

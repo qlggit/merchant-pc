@@ -6,13 +6,15 @@
     <div class="flex-left flex-top">
         <div class="left">
             <div class="pl-40 back-242 head flex-left">
-                <img class="border-rad-100" src="<%=resJson.merchantInfo.headFile%>" alt="">
+                <img class="border-rad-100 left-img" src="<%=resJson.merchantInfo.headFile%>" alt="">
                 <div class="pl-20 fz-30"><%=resJson.merchantInfo.supplierName%></div>
             </div>
-            <div class="member-content pl-40  flex-between  flex-top back-white">
-                <div class="member-left pr-40">
-                    <div class="fz-24 title pt-10 color-128">群成员（<span class="show-user-number"></span>）</div>
+            <div class="member-content pl-40 back-white">
+                <div class="left-main pr-40 pt-60 position-relative ">
+                    <div class="fz-24 title pt-10 color-128 position-absolute left-0 top-0 width-100-100">群成员（<span class="show-user-number"></span>）</div>
+                    <div class="member-left height-100-100 overflow-scroll">
 
+                    </div>
                 </div>
             </div>
         </div>

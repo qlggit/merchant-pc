@@ -27,7 +27,7 @@ $(function(){
             $tr.append('<td>'+(i+1)+'</td>');
             $tr.append('<td>'+o.nickname+'</td>');
             $tr.append('<td>'+o.mobile+'</td>');
-            $tr.append('<td>'+o.costAmount+'</td>');
+            $tr.append('<td>'+o.costAmount/100+'</td>');
             $tr.append('<td>'+o.cityName+'</td>');
             $tr.append('<td><div class="btn-group">' +
                 '<a class="btn btn-sm btn-primary" href="/order/seat?userId='+o.userId+'" target="_blank" index="'+i+'">消费详情</a>' +

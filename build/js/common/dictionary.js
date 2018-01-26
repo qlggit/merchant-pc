@@ -150,9 +150,9 @@ var Dictionary = {
             call && call();
 		});
 	},
-	autoLoad:function(call){
+	autoLoad:function(call , ele){
         var that = this;
-        var ele = $('[data-dictionary]');
+        ele = ele || $('[data-dictionary]');
         var loadCount = ele.length;
         if(loadCount === 0){
             call && call();
@@ -169,6 +169,7 @@ var Dictionary = {
 	loadOption:function($ele , data , options){
 		if(!Array.isArray(data))data = useCommon.objectToArray(data);
         if(!data.find(function(a){return a.key === ''}))data.unshift({key:'',value:'全部'});
+        $ele.html('');
         $.each(data , function( i , o){
         	$ele.append('<option value="' + (o[options.key || 'key']  || o.key || '')+ '">' + ( o[options.val || 'value'] || o.value || '') + '</option>');
 		});

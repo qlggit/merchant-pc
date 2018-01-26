@@ -97,6 +97,7 @@ $(function(){
         $.post('/team/org/' + (updateData?'update':'add') , data , function(a){
             if(a.code ===0){
                 $window.modal('hide');
+                Dictionary.load(null , $('[data-dictionary]'));
                 doSearch(updateData?aotoPage:1);
             }else{
                 useCommon.toast(a.message);

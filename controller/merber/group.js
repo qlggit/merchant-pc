@@ -29,9 +29,7 @@ router.get('/',useValidate.hasLogin,usePermission.authMenu('menu1001'), function
 router.post('/delMember',useValidate.hasLogin, function(req, res, next) {
     useRequest.send(req , res , {
         url:useUrl.member.delChatMember,
-        data:{
-            delUserId :req.body.userId,
-        },
+        data:req.body,
         method:"post",
         notBody:1,
         done:function(a){
